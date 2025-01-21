@@ -18,14 +18,14 @@ We already have both JNI-InChI and InChI-WASM working in both legacy Jmol and Jm
 
 2) Further develop the WASM interface to allow for reading the stereochemical parities the way JNI-InChI does now for Java
 
-3) Upgrade both of these to accommodate the latest InChI verions with a single simple workflow
+3) Upgrade both of these to accommodate the latest InChI versions with a single simple workflow
 
 4) Integrate the update into Jmol and Jmol-SwingJS in order to complete the generation of structure from InChI with correct stereochemical parities and full 2D and 3D layout of the resultant structures in both Java and JavaScript modes. 
 
-The strategy primarily involves creating a single new method in InChI-WASM, *get_model_json()*, which will deliver in JSON format the essential atom, bond, and stereochemical information that JNI-InChI's wrapper does already, (not just a 0D mol file with no stereochemistry). 
+The strategy primarily involves creating a single new method in InChI-WASM, *get_model_json()*, which will deliver in JSON format the essential atom, bond, and stereochemical information similar to what JNI-InChI's wrapper does already (that is, not just a 0D mol file with no stereochemistry). 
 
 This will ensure that both Java and JavaScript implementations of both Jmol-SwingJS and legacy Jmol remain consistent and enable both to do what only Java right now can do, which is to generate well-laid-out structures from InChI.  
 
-And it will allow any web application using OpenChemLib, Jmol, the JmolDataD library, or any other implementation of inchi-wasm to do the same. In Java or JavaScript.
+And it will allow any web application using OpenChemLib, Jmol, the JmolDataD library, or any other implementation of inchi-wasm or JNI-InChI to do the same. In Java or JavaScript.
 
     
