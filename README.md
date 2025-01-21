@@ -6,7 +6,7 @@ The code in this repository is based on a combination of InChI-Web-Demo code and
 
 InChI generation is already implemented in Jmol in both Java and JavaScript (using JNI-InChI for Java and inchi-wasm for JavaScript). The Java implementation also taps the internal InChI model for generating stereochemically correct 2D and 3D structures *from* InChI. This project aims to also allow the production of 2D and 3D structures from InChI for the JavaScript side as well. 
 
-The overall scheme for this functionality is shown below. Basically, InChIJNI.java handles the JNI-InChI interface for Java, and InChIJS.java (yes, ".java") handles the inchi-wasm interface for JavaScript. For SMILES generation, they both feed their respective models to InchiToSmilesConverter.java, which does the magic by creating a Jmol SMILES model, used for input to Jmol's SmilesGenerator.java. this already works perfectly in Java.
+The overall scheme for this functionality is shown below. Basically, InChIJNI.java handles the JNI-InChI interface for Java, and InChIJS.java (yes, ".java") handles the inchi-wasm interface for JavaScript. For SMILES generation, they both feed their respective models to InchiToSmilesConverter.java, which does the magic by creating a Jmol SMILES model, used for input to Jmol's SmilesGenerator.java. Note that this already works perfectly in Java.
 
 ![inchiChart](https://github.com/user-attachments/assets/d482a7b3-571e-4286-b1e9-561354c16d8d)
 
