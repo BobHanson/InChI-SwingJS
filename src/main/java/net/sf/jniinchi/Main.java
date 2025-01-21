@@ -18,9 +18,9 @@
  */
 package net.sf.jniinchi;
 
-import net.sf.jniinchi.Main.Logger.Level;
-import net.sf.jniinchi.Main.Logger.ConsoleAppender;
-import net.sf.jniinchi.Main.Logger.PatternLayout;
+//import net.sf.jniinchi.Main.Logger.Level;
+//import net.sf.jniinchi.Main.Logger.ConsoleAppender;
+//import net.sf.jniinchi.Main.Logger.PatternLayout;
 
 /**
  * Simple test class, for debugging purposes.
@@ -120,71 +120,71 @@ public class Main {
         System.err.println("** JniInchi debugger **");
         System.err.println();
         
-        // Set up logging
-		Logger root = Logger.getRootLogger();
-		if (args.length == 1 && "-debug".equals(args[0])) {
-			root.setLevel(Level.ALL);
-		} else {
-			root.setLevel(Level.INFO);
-		}
-		root.removeAllAppenders();
-		
-		PatternLayout layout = new PatternLayout("%-5p %c - %m%n");
-		
-		// Create console appender
-		ConsoleAppender aconn = new ConsoleAppender(layout, ConsoleAppender.SYSTEM_ERR);
-		aconn.setThreshold(Level.ALL);
-		root.addAppender(aconn);
-
+//        // Set up logging
+//		Logger root = Logger.getRootLogger();
+//		if (args.length == 1 && "-debug".equals(args[0])) {
+//			root.setLevel(Level.ALL);
+//		} else {
+//			root.setLevel(Level.INFO);
+//		}
+//		root.removeAllAppenders();
+//		
+//		PatternLayout layout = new PatternLayout("%-5p %c - %m%n");
+//		
+//		// Create console appender
+//		ConsoleAppender aconn = new ConsoleAppender(layout, ConsoleAppender.SYSTEM_ERR);
+//		aconn.setThreshold(Level.ALL);
+//		root.addAppender(aconn);
+//
         runChecks();
     }
     
-    public static class Logger {
-    	public static class PatternLayout {
-
-			public PatternLayout(String string) {
-				// TODO Auto-generated constructor stub
-			}
-    		
-    	}
-
-        public static class ConsoleAppender {
-
-			public ConsoleAppender(PatternLayout layout, int systemErr) {
-				// TODO Auto-generated constructor stub
-			}
-
-			public void setThreshold(int all) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public static final int SYSTEM_ERR = 1;
-        	
-        }
-    	public static class Level {
-    		public static final int INFO = 0;
-			public static final int ALL = 5;
-    	}
-		public static Logger getRootLogger() {
-			return new Logger();
-		}
-		
-		public void addAppender(ConsoleAppender aconn) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		public void removeAllAppenders() {
-			// TODO Auto-generated method stub
-			
-		}
-
-		private int level;
-		
-		public void setLevel(int level) {
-			this.level = level;
-		}
-    	
-    }
+//    public static class Logger {
+//    	public static class PatternLayout {
+//
+//			public PatternLayout(String string) {
+//				// TODO Auto-generated constructor stub
+//			}
+//    		
+//    	}
+//
+//        public static class ConsoleAppender {
+//
+//			public ConsoleAppender(PatternLayout layout, int systemErr) {
+//				// TODO Auto-generated constructor stub
+//			}
+//
+//			public void setThreshold(int all) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//
+//			public static final int SYSTEM_ERR = 1;
+//        	
+//        }
+//    	public static class Level {
+//    		public static final int INFO = 0;
+//			public static final int ALL = 5;
+//    	}
+//		public static Logger getRootLogger() {
+//			return new Logger();
+//		}
+//		
+//		public void addAppender(ConsoleAppender aconn) {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//
+//		public void removeAllAppenders() {
+//			// TODO Auto-generated method stub
+//			
+//		}
+//
+//		private int level;
+//		
+//		public void setLevel(int level) {
+//			this.level = level;
+//		}
+//    	
+//    }
 }
