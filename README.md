@@ -6,7 +6,7 @@ Testing modifications to InChI C/C++ code to enable simple Java and JavaScript a
 
 This code is based on a combination of IUPAC-InChI code from both the core InChI project and InChI-Web-Demo, along with JNI-InChI code.
 
-It is cloned from [InChI-Web-Demo](https://github.com/IUPAC-InChI/InChI-Web-Demo) but also includes code from [https://github.com/SureChEMBL/jni-inchi](Sam Adam's from 2011)
+It is cloned from [InChI-Web-Demo](https://github.com/IUPAC-InChI/InChI-Web-Demo) but also includes code from [https://github.com/SureChEMBL/jni-inchi](SureChEMBL version).
 
 We already have both JNI-InChI and InChI-WASM working in both legacy Jmol and Jmol-SwingJS, so both in Java and JavaScript. This project aims to:
 
