@@ -8,7 +8,7 @@ InChI generation is already implemented in Jmol in both Java and JavaScript (usi
 
 The overall scheme for this functionality is shown below. Basically, InChIJNI.java handles the JNI-InChI interface for Java, and InChIJS.java (yes, ".java") handles the inchi-wasm interface for JavaScript. For SMILES generation, they both feed their respective models to InchiToSmilesConverter.java, which does the magic by creating a Jmol SMILES model, used for input to Jmol's SmilesGenerator.java. Note that this already works perfectly in Java.
 
-![inchiChart](https://github.com/user-attachments/assets/d482a7b3-571e-4286-b1e9-561354c16d8d)
+![inchiChart](https://github.com/user-attachments/assets/5143fe27-c88b-4bdc-a003-83e967818ff8)
 
 It is expected that this will require just a single method added to inchi-web.wasm. 
 
