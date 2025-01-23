@@ -51,7 +51,7 @@ function writeResult(text, ...ids) {
   console.log(text);
 }
 
-async function updateInchiTab3() {
+async function doConvertToMol() {
   const input = document.getElementById("inchi-tab3-inputTextarea").value.trim();
   const inchiVersion = getVersion("inchi-tab3-pane");
   //const ketcher = getKetcher("inchi-tab3-ketcher");

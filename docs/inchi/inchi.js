@@ -27,7 +27,6 @@ async function inchiFromMolfile(molfile, options, inchiVersion) {
   const ptr = module.ccall("inchi_from_molfile", "number", ["string", "string"], [molfile, options]);
   const result = module.UTF8ToString(ptr);
   module._free(ptr);
-
   return JSON.parse(result);
 }
 
@@ -36,7 +35,6 @@ async function inchikeyFromInchi(inchi, inchiVersion) {
   const ptr = module.ccall("inchikey_from_inchi", "number", ["string"], [inchi]);
   const result = module.UTF8ToString(ptr);
   module._free(ptr)
-
   return JSON.parse(result);
 }
 
@@ -45,7 +43,6 @@ async function molfileFromInchi(inchi, options, inchiVersion) {
   const ptr = module.ccall("molfile_from_inchi", "number", ["string", "string"], [inchi, options]);
   const result = module.UTF8ToString(ptr);
   module._free(ptr);
-
   return JSON.parse(result);
 }
 
@@ -54,6 +51,6 @@ async function molfileFromAuxinfo(auxinfo, bDoNotAddH, bDiffUnkUndfStereo, inchi
   const ptr = module.ccall("molfile_from_auxinfo", "number", ["string", "number", "number"], [auxinfo, bDoNotAddH, bDiffUnkUndfStereo]);
   const result = module.UTF8ToString(ptr);
   module._free(ptr);
-
   return JSON.parse(result);
 }
+
