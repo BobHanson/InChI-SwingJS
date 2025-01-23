@@ -1,3 +1,6 @@
+err = function(e) {
+  alert(e);
+}
 
 var inchiModule107 = (() => {
   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;

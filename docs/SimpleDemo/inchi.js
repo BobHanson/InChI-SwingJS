@@ -8,8 +8,8 @@
  */
 const availableInchiVersions = {
   "1.07.2": {
-    "module": inchiModule107(),
-    "optionsTemplateId": "inchiOptionsTemplate107",
+    "module": inchiModule(),
+    "optionsTemplateId": "inchiOptionsTemplate",
     "default": true
   }
 };
