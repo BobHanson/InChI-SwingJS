@@ -413,7 +413,9 @@ void strRadical(char* buf, S_CHAR radical) {
 	strcat(buf, "\"");
 }
 
-void addJSONAtoms(char* s, int numatoms, inchi_Atom atoms[]) {
+void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
+	  inchi_Atom* atoms = struc->atom;
+  	  int numatoms = struc->num_atoms;	
 	  strcat(s, "\"atoms\":[");
 	  int i;
 	  for (i = 0; i < numatoms; i++) {
@@ -479,6 +481,7 @@ void strBondType(char* buf, S_CHAR type) {
 }
 
 void strBondStereo(char* buf, S_CHAR stereo) {
+	// I don't think these can be present in an output structure
 	strcat(buf, "\"stereo\":\"");
 	switch (stereo) {
 	default:
@@ -510,7 +513,9 @@ void strBondStereo(char* buf, S_CHAR stereo) {
 	strcat(buf, "\"");
 }
 
-void addJSONBonds(char* s, int numatoms, inchi_Atom atoms[]) {
+void addJSONBonds(char* s, inchi_OutputStructEx *struc) {
+	int numatoms = struc->num_atoms;	
+	inchi_Atom* atoms = struc->atom;
 	  strcat(s, ",\"bonds\":[");
 	  int i, j, n;
 	  n = 0;
@@ -583,7 +588,9 @@ void strParity(char* buf, S_CHAR parity) {
 	strcat(buf, "\"");
 }
 
-void addJSONStereos(char* s, int numstereo, inchi_Stereo0D stereos[]) {
+void addJSONStereos(char* s, inchi_OutputStructEx *struc) {	
+	int numstereo = struc->num_stereo0D;
+	inchi_Stereo0D* stereos = struc->stereo0D;
 	  strcat(s, ",\"stereo0d\":[");
 	  int i;
 	  for (i = 0; i < numstereo; i++) {
@@ -604,33 +611,24 @@ void addJSONStereos(char* s, int numstereo, inchi_Stereo0D stereos[]) {
 	  strcat(s, "]");
 }
 
-void getModelJSON(inchi_OutputStructEx *inchi_out, char* json) {
-
-	int i, j, ret;
+void getModelJSON(char* json, inchi_OutputStructEx *struc) {
 	strcat(json,"{");
-	int numatoms, numstereo;
-	numatoms = inchi_out->num_atoms;
-	numstereo = inchi_out->num_stereo0D;
-	addJSONAtoms(json, numatoms, inchi_out->atom);
-	addJSONBonds(json, numatoms, inchi_out->atom);
-	addJSONStereos(json, numstereo, inchi_out->stereo0D);
+	addJSONAtoms(json, struc);
+	addJSONBonds(json, struc);
+	addJSONStereos(json, struc);
 	strcat(json, "}");
 }
 	
 char* model_from_inchi(char* inchi, char* options) {
+	char *json;
 	int ret;
 	inchi_InputINCHI input;
 	inchi_OutputStructEx *output;
-	char *json;
-	
 	input.szInChI = inchi;
-	input.szOptions = options;
-	
+	input.szOptions = options;	
 	output = malloc(sizeof(*output));
 	memset(output, 0, sizeof(*output));
-	
-	ret = GetStructFromINCHIEx(&input, output);
-	
+	ret = GetStructFromINCHIEx(&input, output);	
 	switch(ret) {
 	 case inchi_Ret_OKAY:
 	 case inchi_Ret_WARNING: {
@@ -639,9 +637,10 @@ char* model_from_inchi(char* inchi, char* options) {
 		int numatoms, numstereo;
 		numatoms = output->num_atoms;
 		numstereo = output->num_stereo0D;
-		char buf[numatoms*160 + numatoms*40 + numstereo];
+		// atoms, bonds, and stereo generous appoximations of JSON length
+		char buf[numatoms*160 + numatoms*55 + numstereo*100];
 
-	   getModelJSON(output, buf);
+	   getModelJSON(buf, output);
 	   json = to_json_model(0, buf, szMsg, szLog);
 	   break;
 	 }
