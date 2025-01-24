@@ -52,25 +52,13 @@ function writeResult(text, ...ids) {
 }
 
 async function doConvertToMol() {
-  const input = document.getElementById("inchi-tab3-inputTextarea").value.trim();
-  const inchiVersion = getVersion("inchi-tab3-pane");
-  //const ketcher = getKetcher("inchi-tab3-ketcher");
-  const logTextElementId = "inchi-tab3-logs";
-
-  // clear outputs
-  //ketcher.editor.clear()
-  writeResult("", logTextElementId);
-
-  // input validation
+  var input = getInput3(true);
   if (!input) {
     return;
   }
-  if (!input.startsWith("InChI=") && !input.startsWith("AuxInfo=")) {
-    writeResult("The input string should start with \"InChI=\" or \"AuxInfo=\".", logTextElementId);
-    return;
-  }
-
   // run conversion
+  const logTextElementId = "inchi-tab3-logs";
+  const inchiVersion = getVersion("inchi-tab3-pane");
   let molfileResult;
   if (input.startsWith("InChI=")) {
     try {
@@ -104,6 +92,56 @@ async function doConvertToMol() {
   }
   if (molfileResult.message !== "") {
     log.push(molfileResult.message);
+  }
+  writeResult(log.join("\n"), logTextElementId);
+}
+
+function getInput3(allowAux) {
+	  const input = document.getElementById("inchi-tab3-inputTextarea").value.trim();
+	  const logTextElementId = "inchi-tab3-logs";
+
+	  // clear outputs
+	  writeResult("", logTextElementId);
+
+	  // input validation
+	  if (!input) {
+	    return;
+	  }
+	  if (input.startsWith("InChI=") || allowAux && input.startsWith("AuxInfo=")) {
+		  return input;
+	  }
+      writeResult("The input string should start with \"InChI=\"" +
+    		(allowAux ? " or \"AuxInfo=\"." : "."), logTextElementId);
+}
+
+async function doGetModel() {
+  var input = getInput3(false);
+  if (!input)
+	  return;
+  const logTextElementId = "inchi-tab3-logs";
+  const inchiVersion = getVersion("inchi-tab3-pane");
+  // run conversion
+  let modelResult;
+  if (input.startsWith("InChI=")) {
+    try {
+      modelResult = await modelFromInchi(input, "", inchiVersion);
+    } catch(e) {
+      writeResult(`Caught exception from modelFromInchi(): ${e}`, logTextElementId);
+      console.error(e);
+      return;
+    }
+  }
+  const model = modelResult.model;
+  if (model !== "") {
+	  alert(model);
+  }
+
+  const log = [];
+  if (modelResult.log !== "") {
+    log.push(molfileResult.log);
+  }
+  if (modelResult.message !== "") {
+    log.push(modelResult.message);
   }
   writeResult(log.join("\n"), logTextElementId);
 }

@@ -54,3 +54,11 @@ async function molfileFromAuxinfo(auxinfo, bDoNotAddH, bDiffUnkUndfStereo, inchi
   return JSON.parse(result);
 }
 
+async function modelFromInchi(inchi, options, inchiVersion) {
+  const module = await availableInchiVersions[inchiVersion].module;
+  const ptr = module.ccall("model_from_inchi", "number", ["string", "string"], [inchi, options]);
+  const result = module.UTF8ToString(ptr);
+  module._free(ptr);
+  return JSON.parse(result);
+}
+

@@ -53,3 +53,10 @@ Jmol.molfileFromAuxinfo = function(auxinfo, bDoNotAddH, bDiffUnkUndfStereo) {
   return JSON.parse(result);
 }
 
+Jmol.modelFromInchi = function(inchi, options) {
+  const ptr = module.ccall("model_from_inchi", "number", ["string", "string"], [inchi, options]);
+  const result = module.UTF8ToString(ptr);
+  module._free(ptr);
+  return JSON.parse(result);
+}
+

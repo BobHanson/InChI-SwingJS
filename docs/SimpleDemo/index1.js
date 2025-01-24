@@ -20,15 +20,23 @@ function writeResult(text) {
 	console.log(text);
 }
 
+var getInput3 = function(allowAux) {
+	  var input = document.getElementById("inchi-tab3-inputTextarea").value.trim();
+	  
+	  // input validation
+	  if (!input) {
+	    return;
+	  }
+	  if (input.startsWith("InChI=") || allowAux && input.startsWith("AuxInfo=")) {
+		  return input;
+	  }
+	  alert("The input string should start with \"InChI=\"" +
+  		(allowAux ? " or \"AuxInfo=\"." : "."));
+}
+
+
 function doConvertToMol() {
-	var input = document.getElementById("inchi-tab3-inputTextarea").value.trim();
-	if (!input) {
-		return;
-	}
-	if (!input.startsWith("InChI=") && !input.startsWith("AuxInfo=")) {
-		alert("The input string should start with \"InChI=\" or \"AuxInfo=\".");
-		return;
-	}
+	var input = getInput3(true);
 	// run conversion
 	var ret;
 	if (input.startsWith("InChI=")) {
@@ -51,3 +59,20 @@ function doConvertToMol() {
 	if (ret)
 		alert(ret.molfile ? ret.molfile : ret.log);
 }
+
+function doGetModel() {
+	var input = getInput3(false);
+	// run conversion
+	var ret;
+		try {
+			var ret = Jmol.modelFromInchi(input);
+		} catch (e) {
+			console.error(e);
+			alert(`Caught exception from modelFromInchi(): ${e}`);
+			return;
+		}
+	if (ret)
+		alert(ret.model ? ret.model : ret.log);
+}
+
+

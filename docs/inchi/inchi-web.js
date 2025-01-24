@@ -781,6 +781,7 @@ async function createWasm() {
 function to_json_inchi(return_code,inchi,auxinfo,message,log) { const json = JSON.stringify({ "return_code": return_code, "inchi": Module.UTF8ToString(inchi), "auxinfo": Module.UTF8ToString(auxinfo), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
 function to_json_inchikey(return_code,inchikey,message) { const json = JSON.stringify({ "return_code": return_code, "inchikey": Module.UTF8ToString(inchikey), "message": Module.UTF8ToString(message) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
 function to_json_molfile(return_code,molfile,message,log) { const json = JSON.stringify({ "return_code": return_code, "molfile": Module.UTF8ToString(molfile), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_model(return_code,model,message,log) { const json = JSON.stringify({ "return_code": return_code, "model": Module.UTF8ToString(model), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
 
 // end include: preamble.js
 
@@ -3848,6 +3849,8 @@ var wasmImports = {
   /** @export */
   to_json_inchikey,
   /** @export */
+  to_json_model,
+  /** @export */
   to_json_molfile
 };
 var wasmExports = await createWasm();
@@ -3859,6 +3862,7 @@ var _inchi_from_molfile = Module['_inchi_from_molfile'] = createExportWrapper('i
 var _inchikey_from_inchi = Module['_inchikey_from_inchi'] = createExportWrapper('inchikey_from_inchi', 1);
 var _molfile_from_inchi = Module['_molfile_from_inchi'] = createExportWrapper('molfile_from_inchi', 2);
 var _molfile_from_auxinfo = Module['_molfile_from_auxinfo'] = createExportWrapper('molfile_from_auxinfo', 3);
+var _model_from_inchi = Module['_model_from_inchi'] = createExportWrapper('model_from_inchi', 2);
 var _strerror = createExportWrapper('strerror', 1);
 var _emscripten_stack_init = wasmExports['emscripten_stack_init']
 var _emscripten_stack_get_free = wasmExports['emscripten_stack_get_free']
