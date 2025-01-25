@@ -429,7 +429,8 @@ void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
 	    int isotopicMass = iatom.isotopic_mass;
 		if (i > 0)
 			strcat(s, ",");
-		sprintf(s + strlen(s), "{\"elname\":\"%s\"", elem);
+		sprintf(s + strlen(s), "{\"index\":%d", i);
+		sprintf(s + strlen(s), ",\"elname\":\"%s\"", elem);
 		if (charge != 0) {
 			sprintf(s + strlen(s), ",\"charge\":%d", charge);
 		}
