@@ -57,12 +57,25 @@ function doConvertToMol() {
 		}
 	}
 	if (ret)
-		alert(ret.molfile ? ret.molfile : ret.log);
+		alert(ret.molfile ? ret.molfile : ret.msg + "\n" + ret.log);
+}
+
+function doGetStandardInchi() {
+	var input = getInput3(false);
+	var ret;
+	try {
+		var ret = Jmol.inchiFromInchi(input);
+	} catch (e) {
+		console.error(e);
+		alert(`Caught exception from inchiFromInchi(): ${e}`);
+		return;
+	}
+	if (ret)
+		alert(ret.inchi ? ret.inchi : ret.msg + "\n" + ret.log);
 }
 
 function doGetModel() {
 	var input = getInput3(false);
-	// run conversion
 	var ret;
 		try {
 			var ret = Jmol.modelFromInchi(input);
@@ -72,7 +85,7 @@ function doGetModel() {
 			return;
 		}
 	if (ret)
-		alert(ret.model ? ret.model : ret.log);
+		alert(ret.model ? ret.model : ret.msg + "\n" + ret.log);
 }
 
 

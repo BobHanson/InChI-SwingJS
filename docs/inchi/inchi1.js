@@ -60,3 +60,11 @@ Jmol.modelFromInchi = function(inchi, options) {
   return JSON.parse(result);
 }
 
+Jmol.inchiFromInchi = function(inchi, options) {
+  const ptr = module.ccall("inchi_from_inchi", "number", ["string", "string"], [inchi, options]);
+  const result = module.UTF8ToString(ptr);
+  module._free(ptr)
+  return JSON.parse(result);
+}
+
+

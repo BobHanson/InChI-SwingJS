@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "inchi_api.h"
+#include "util.h"
 #include <emscripten.h>
 
 
@@ -79,6 +80,55 @@ char* inchi_from_molfile(char *molfile, char *options) {
   // Caller should free this.
   return json;
 }
+
+
+
+/* BH new -- also in JNI-InChI
+ * 
+ * InChI from InChI
+ * ----------------
+ */
+
+char* inchi_from_inchi(char* inchi, char* options) {
+	  int ret;
+	  inchi_InputINCHI input;
+	  inchi_Output *output;
+	  char *json;
+
+	  input.szInChI = inchi;
+	  input.szOptions = options;
+
+	  output = malloc(sizeof(*output));
+	  memset(output, 0, sizeof(*output));
+
+	  ret = GetINCHIfromINCHI(&input, output);
+
+	  switch(ret) {
+	    case inchi_Ret_OKAY: {
+	      json = to_json_inchi(0, output->szInChI, "", "", "");
+	      break;
+	    }
+	    case inchi_Ret_WARNING: {
+	      json = to_json_inchi(1, output->szInChI, "", output->szMessage, output->szLog);
+	      break;
+	    }
+	    default: {
+		  json = to_json_inchi(1, "", "", output->szMessage, output->szLog);
+	    }
+	  }
+
+	  FreeINCHI(output);
+	  free(output);
+
+	  
+	  // Caller should free this.
+	  return json;
+	}
+
+
+
+
+
 
 /*
  * InChIKey from InChI
@@ -438,7 +488,7 @@ void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
 			strcat(s, ",");
 			strRadical(s, iatom.radical);
 		}
-		if (implicitH != 0) {
+		if (implicitH > 0) { // this one can be -1 (for a hydrogen)
 			sprintf(s + strlen(s), ",\"implicitH\":%d", implicitH);
 		}
 		if (implicitP != 0) {
@@ -451,6 +501,10 @@ void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
 			sprintf(s + strlen(s), ",\"implicitTritium\":%d", implicitT);
 		}
 		if (isotopicMass != 0) {
+			if (isotopicMass >= ISOTOPIC_SHIFT_FLAG - ISOTOPIC_SHIFT_MAX) { // 9000
+				isotopicMass -= ISOTOPIC_SHIFT_FLAG; // 10000
+				isotopicMass += get_atomic_mass(elem);
+			}
 			sprintf(s + strlen(s), ",\"isotopicMass\":%d", isotopicMass);
 		}
 		strcat(s, "}");
