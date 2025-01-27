@@ -8,17 +8,18 @@ java2script/SwingJS is a method of writing Java/Swing source code such that it c
 
 The code in this repository is based on a combination of InChI-Web-Demo code and JNI-InChI code. It is forked from [InChI-Web-Demo](https://github.com/IUPAC-InChI/InChI-Web-Demo) but also includes code from [SureChEMBL JNI-InChI](https://github.com/SureChEMBL/jni-inchi). The idea is to create a single workflow that produces both the WASM and the JNI-InChI files we need in Jmol.
 
-InChI generation is already implemented in Jmol in both Java and JavaScript (using JNI-InChI for Java and inchi-wasm for JavaScript). The Java implementation also taps the internal InChI model for generating stereochemically correct 2D and 3D structures *from* InChI. This project aims to also allow the production of 2D and 3D structures from InChI for the JavaScript side as well. 
+InChI 1.03 generation is already implemented in Jmol in both Java and JavaScript (using JNI-InChI for Java and inchi-wasm for JavaScript). The Java implementation also taps the internal InChI model for generating stereochemically correct 2D and 3D structures *from* InChI. This project aims to also allow the production of 2D and 3D structures from InChI for the JavaScript side as well. 
 
 The overall scheme for this functionality is shown below. Basically, InChIJNI.java handles the JNI-InChI interface for Java, and InChIJS.java (yes, ".java") handles the inchi-wasm interface for JavaScript. For SMILES generation, they both feed their respective models to InchiToSmilesConverter.java, which does the magic by creating a Jmol SMILES model, used for input to Jmol's SmilesGenerator.java. Note that this already works perfectly in Java. 
 
-In the figure below, heavy black and red lines are done; thin black lines are still to do.
+In the figure below, heavy black lines were done previously; red lines and thin black lines were completed the week of Jan 21-25, 2025. 
 
 ![inchiChartDone](https://github.com/user-attachments/assets/ef955e36-4d9c-4625-ae94-16f3c14b9a15)
 
-It is expected that this will require just a single method added to inchi-web.wasm. 
+We already had both JNI-InChI and InChI-WASM working in both legacy Jmol and Jmol-SwingJS, so both in Java and JavaScript. The work outside of Jmol only required the addtion of a single exported method in inchi-web.c, specifically [model_from_inchi](https://github.com/BobHanson/InChI-SwingJS/blob/b2ab44074c69694d15cdd82a5f311296f51a308c/inchi/INCHI_WEB/inchi_web.c#L623). There were no particular issues with this development.
+The method delivers in JSON format the essential atom, bond, and stereochemical information identical to what JNI-InChI's wrapper does already. 
 
-We already have both JNI-InChI and InChI-WASM working in both legacy Jmol and Jmol-SwingJS, so both in Java and JavaScript. This project aims to:
+This project aimed to:
 
 1) Combine the JNI code for Java with the WASM code for JavaScript in one maintainable package
 
@@ -28,11 +29,9 @@ We already have both JNI-InChI and InChI-WASM working in both legacy Jmol and Jm
 
 4) Integrate the update into Jmol and Jmol-SwingJS in order to complete the generation of structure from InChI with correct stereochemical parities and full 2D and 3D layout of the resultant structures in both Java and JavaScript modes. 
 
-The strategy primarily involves creating a single new method in InChI-WASM, *get_model_json()*, which will deliver in JSON format the essential atom, bond, and stereochemical information similar to what JNI-InChI's wrapper does already (that is, not just a 0D mol file with no stereochemistry). 
+This ensures that both Java and JavaScript implementations of both Jmol-SwingJS and legacy Jmol remain consistent and enable both to do what only Java right now can do, which is to generate well-laid-out structures from InChI.  
 
-This will ensure that both Java and JavaScript implementations of both Jmol-SwingJS and legacy Jmol remain consistent and enable both to do what only Java right now can do, which is to generate well-laid-out structures from InChI.  
+And it allows any web application using OpenChemLib, Jmol, the JmolDataD library, or any other implementation of inchi-wasm or JNI-InChI to do the same. In Java or JavaScript.
 
-And it will allow any web application using OpenChemLib, Jmol, the JmolDataD library, or any other implementation of inchi-wasm or JNI-InChI to do the same. In Java or JavaScript.
-
-Current status is that we have managed to collect and compile inchi.c + inchi-web.c and are now in the process of adapting it. 
+Current status is that all steps are complete except for upgrading the JNI-Java code from InChI 1.03 to 1.07. 
 
