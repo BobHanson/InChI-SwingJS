@@ -20,13 +20,14 @@
 #
 
 # Current native code version
-VERSION = 1.03_1
+VERSION = 1.07_2
 
 ifndef JAVA_HOME
-f := $(error JAVA_HOME is not defined, Ensure that it is pointing to a JDK)
+##f := $(error JAVA_HOME is not defined, Ensure that it is pointing to a JDK)
+JAVA_HOME = /mnt/c/progra~1/Java/jdk1.8.0_331
 endif
 
-JAVAH = "$(JAVA_HOME)/bin/javah"
+JAVAH = "$(JAVA_HOME)/bin/javah.exe"
 # TODO $(error Cannot find javah. Ensure JAVA_HOME is correctly set and pointing to a JDK)
 
 
@@ -34,7 +35,8 @@ JAVAH = "$(JAVA_HOME)/bin/javah"
 
 # PLATFORM environment variable must be set
 ifndef PLATFORM
-f := $(error PLATFORM is not defined)
+##f := $(error PLATFORM is not defined)
+PLATFORM = LINUX
 endif
 
 LIB_VERSION = $(VERSION)-$(PLATFORM)
