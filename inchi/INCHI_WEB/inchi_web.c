@@ -466,27 +466,47 @@ void strRadical(char* buf, S_CHAR radical) {
 void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
 	  inchi_Atom* atoms = struc->atom;
   	  int numatoms = struc->num_atoms;	
+	  sprintf(s + strlen(s), "\"atomCount\":%d,", numatoms);
 	  strcat(s, "\"atoms\":[");
 	  int i;
+	  int haveXYZ = 0;
 	  for (i = 0; i < numatoms; i++) {
-	    inchi_Atom iatom = atoms[i];
-	    char *elem = iatom.elname;
-	    int charge = iatom.charge;
-	    int implicitH = iatom.num_iso_H[0];
-	    int implicitP = iatom.num_iso_H[1];
-	    int implicitD = iatom.num_iso_H[2];
-	    int implicitT = iatom.num_iso_H[3];
-	    int isotopicMass = iatom.isotopic_mass;
+		    inchi_Atom a = atoms[i];
+		    if (a.x != 0 || a.y != 0 || a.z != 0) {
+		    	haveXYZ = 1;
+		    	break;
+		    }
+	  }
+	  for (i = 0; i < numatoms; i++) {
+		    inchi_Atom a = atoms[i];
+	    char *elem = a.elname;
+	    int charge = a.charge;
+	    int implicitH = a.num_iso_H[0];
+	    int implicitP = a.num_iso_H[1];
+	    int implicitD = a.num_iso_H[2];
+	    int implicitT = a.num_iso_H[3];
+	    int isotopicMass = a.isotopic_mass;
 		if (i > 0)
 			strcat(s, ",");
-		sprintf(s + strlen(s), "{\"index\":%d", i);
+		strcat(s, "{");
+		sprintf(s + strlen(s), "\"index\":%d", i);
 		sprintf(s + strlen(s), ",\"elname\":\"%s\"", elem);
+	    if (haveXYZ == 1) {
+			sprintf(s + strlen(s), ",\"x\":%.4f,\"y\":%.4f,\"z\":%.4f", a.x, a.y, a.z);
+        }
+		if (isotopicMass != 0) {
+			if (isotopicMass >= ISOTOPIC_SHIFT_FLAG - ISOTOPIC_SHIFT_MAX) { // 9000
+				isotopicMass -= ISOTOPIC_SHIFT_FLAG; // 10000
+				isotopicMass += get_atomic_mass(elem);
+			}
+			sprintf(s + strlen(s), ",\"isotopicMass\":%d", isotopicMass);
+		}
 		if (charge != 0) {
 			sprintf(s + strlen(s), ",\"charge\":%d", charge);
 		}
-		if (iatom.radical != INCHI_RADICAL_NONE) {
+		if (a.radical != INCHI_RADICAL_NONE) {
 			strcat(s, ",");
-			strRadical(s, iatom.radical);
+			strRadical(s, a.radical);
 		}
 		if (implicitH > 0) { // this one can be -1 (for a hydrogen)
 			sprintf(s + strlen(s), ",\"implicitH\":%d", implicitH);
@@ -499,13 +519,6 @@ void addJSONAtoms(char* s, inchi_OutputStructEx *struc) {
 		}
 		if (implicitT != 0) {
 			sprintf(s + strlen(s), ",\"implicitTritium\":%d", implicitT);
-		}
-		if (isotopicMass != 0) {
-			if (isotopicMass >= ISOTOPIC_SHIFT_FLAG - ISOTOPIC_SHIFT_MAX) { // 9000
-				isotopicMass -= ISOTOPIC_SHIFT_FLAG; // 10000
-				isotopicMass += get_atomic_mass(elem);
-			}
-			sprintf(s + strlen(s), ",\"isotopicMass\":%d", isotopicMass);
 		}
 		strcat(s, "}");
 	  }
@@ -569,39 +582,39 @@ void strBondStereo(char* buf, S_CHAR stereo) {
 }
 
 void addJSONBonds(char* s, inchi_OutputStructEx *struc) {
-	int numatoms = struc->num_atoms;	
-	inchi_Atom* atoms = struc->atom;
-	  strcat(s, ",\"bonds\":[");
-	  int i, j, n;
-	  n = 0;
-	  for (i = 0; i < numatoms; i++) {
-	    inchi_Atom iatom = atoms[i];
-	    int numbonds = iatom.num_bonds;
-
-	    if (numbonds > 0) {
-	      for (j = 0; j < numbonds; j++) {
-	        /* Bonds get recorded twice, so only pick one direction... */
-	    	int k = iatom.neighbor[j]; 
-	        if (k < i) {
-	        	if (n > 0)
-	        		strcat(s, ",");
-	        	n++;
-	        	sprintf(s + strlen(s), "{\"originAtom\":%d,\"targetAtom\":%d,", i, k);
-	        	strBondType(s, iatom.bond_type[j]); // NONE??
-	        	if (iatom.bond_stereo[j] != INCHI_BOND_TYPE_NONE) {
-		        	strcat(s, ",");
-	        		strBondStereo(s, iatom.bond_stereo[j]);
-	        	}
-	        	strcat(s, "}");
-	        }
-	      }
-	    }
-	  }
-	  strcat(s, "]");
+  int numatoms = struc->num_atoms;	
+  inchi_Atom* atoms = struc->atom;
+  strcat(s, ",\"bonds\":[");
+  int i, j, n;
+  n = 0;
+  for (i = 0; i < numatoms; i++) {
+    inchi_Atom a = atoms[i];
+    int numbonds = a.num_bonds;
+    if (numbonds > 0) {
+      for (j = 0; j < numbonds; j++) {
+        /* Bonds get recorded twice, so only pick one direction... */
+	int k = a.neighbor[j]; 
+    if (k < i) {
+    	if (n > 0)
+    		strcat(s, ",");
+    	n++;
+    	sprintf(s + strlen(s), "{\"originAtom\":%d,\"targetAtom\":%d,", i, k);
+    	strBondType(s, a.bond_type[j]); // NONE??
+    	if (a.bond_stereo[j] != INCHI_BOND_TYPE_NONE) {
+        	strcat(s, ",");
+    		strBondStereo(s, a.bond_stereo[j]);
+    	}
+    	strcat(s, "}");
+        }
+      }
+    }
+  }
+  strcat(s, "]");
+  sprintf(s + strlen(s), ",\"bondCount\":%d", n);
 }
 
 void strStereoType(char* buf, S_CHAR type) {
-	strcat(buf, "\"stereoType\":\"");
+	strcat(buf, "\"type\":\"");
 	switch (type) {
 	default:
 	case INCHI_StereoType_None:
@@ -644,26 +657,30 @@ void strParity(char* buf, S_CHAR parity) {
 }
 
 void addJSONStereos(char* s, inchi_OutputStructEx *struc) {	
-	int numstereo = struc->num_stereo0D;
-	inchi_Stereo0D* stereos = struc->stereo0D;
-	  strcat(s, ",\"stereo0d\":[");
-	  int i;
-	  for (i = 0; i < numstereo; i++) {
-		if (i > 0)
-			strcat(s, ",");
-		strcat (s, "{");
-	    inchi_Stereo0D istereo = stereos[i];
-	    if (istereo.central_atom != NO_ATOM) {
-	    	sprintf(s + strlen(s), "\"centralAtom\":%d,",istereo.central_atom);
-	    }
-    	sprintf(s + strlen(s), "\"neighbors\":[%d,%d,%d,%d]", istereo.neighbor[0], istereo.neighbor[1], istereo.neighbor[2], istereo.neighbor[3]);
+  int numstereo = struc->num_stereo0D;
+  if (numstereo == 0)
+	return;
+  sprintf(s + strlen(s), ",\"stereoCount\":%d", numstereo);
+  inchi_Stereo0D* stereos = struc->stereo0D;
+  strcat(s, ",\"stereo\":[");
+  int i;
+  for (i = 0; i < numstereo; i++) {
+	if (i > 0)
+		strcat(s, ",");
+	strcat (s, "{");
+    inchi_Stereo0D istereo = stereos[i];
+	strStereoType(s, istereo.type);
+	strcat(s, ",");
+	strParity(s, istereo.parity);
+	strcat(s, ",");
+	sprintf(s + strlen(s), "\"neighbors\":[%d,%d,%d,%d]", istereo.neighbor[0], istereo.neighbor[1], istereo.neighbor[2], istereo.neighbor[3]);
+    if (istereo.central_atom != NO_ATOM) {
     	strcat(s, ",");
-    	strStereoType(s, istereo.type);
-    	strcat(s, ",");
-    	strParity(s, istereo.parity);
-    	strcat(s, "}");
-	  }
-	  strcat(s, "]");
+    	sprintf(s + strlen(s), "\"centralAtom\":%d",istereo.central_atom);
+    }
+	strcat(s, "}");
+  }
+  strcat(s, "]");
 }
 
 void getModelJSON(char* json, inchi_OutputStructEx *struc) {

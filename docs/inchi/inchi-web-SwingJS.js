@@ -4870,6 +4870,7 @@ var module;
  
 
  self.Jmol || (self.Jmol = {});
+ self.J2S || (self.J2S = self.Jmol);
  
 /*
  * Glue code to invoke the C functions in inchi_web.c
