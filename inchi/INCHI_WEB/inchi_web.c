@@ -598,9 +598,12 @@ void addJSONBonds(char* s, inchi_OutputStructEx *struc) {
     	if (n > 0)
     		strcat(s, ",");
     	n++;
-    	sprintf(s + strlen(s), "{\"originAtom\":%d,\"targetAtom\":%d,", i, k);
-    	strBondType(s, a.bond_type[j]); // NONE??
-    	if (a.bond_stereo[j] != INCHI_BOND_TYPE_NONE) {
+    	sprintf(s + strlen(s), "{\"originAtom\":%d,\"targetAtom\":%d", i, k);
+    	if (a.bond_type[j] != INCHI_BOND_TYPE_SINGLE) {
+    		strcat(s, ",");
+        	strBondType(s, a.bond_type[j]); // NONE??
+    	}
+    	if (a.bond_stereo[j] != INCHI_BOND_STEREO_NONE) {
         	strcat(s, ",");
     		strBondStereo(s, a.bond_stereo[j]);
     	}
@@ -711,7 +714,7 @@ char* model_from_inchi(char* inchi, char* options) {
 		numstereo = output->num_stereo0D;
 		// atoms, bonds, and stereo generous appoximations of JSON length
 		char buf[numatoms*160 + numatoms*55 + numstereo*100];
-
+		buf[0] = 0;
 	   getModelJSON(buf, output);
 	   json = to_json_model(0, buf, szMsg, szLog);
 	   break;
