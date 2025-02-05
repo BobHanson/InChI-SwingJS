@@ -1681,10 +1681,10 @@ var tempI64;
 var ASM_CONSTS = {
   
 };
-function to_json_inchi(return_code,inchi,auxinfo,message,log){ const json = JSON.stringify({ "return_code": return_code, "inchi": Module.UTF8ToString(inchi), "auxinfo": Module.UTF8ToString(auxinfo), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_inchikey(return_code,inchikey,message){ const json = JSON.stringify({ "return_code": return_code, "inchikey": Module.UTF8ToString(inchikey), "message": Module.UTF8ToString(message) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_model(return_code,model,message,log){ const json = JSON.stringify({ "return_code": return_code, "model": Module.UTF8ToString(model), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_molfile(return_code,molfile,message,log){ const json = JSON.stringify({ "return_code": return_code, "molfile": Module.UTF8ToString(molfile), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_inchi(return_code,inchi,auxinfo,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "inchi": Module.UTF8ToString(inchi), "auxinfo": Module.UTF8ToString(auxinfo), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_inchikey(return_code,inchikey,message,ver){ const json = JSON.stringify({ "return_code": return_code, "inchikey": Module.UTF8ToString(inchikey), "message": Module.UTF8ToString(message), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_model(return_code,model,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "model": Module.UTF8ToString(model), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_molfile(return_code,molfile,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "molfile": Module.UTF8ToString(molfile), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
 
 
 
@@ -4898,6 +4898,7 @@ J2S.inchiFromMolfile = function(molfile, options) {
 }
 
 J2S.inchiFromInchi = function(inchi, options) {
+	options || (options = null);
   const ptr = module.ccall("inchi_from_inchi", "number", ["string", "string"], [inchi, options]);
   const result = module.UTF8ToString(ptr);
   module._free(ptr)

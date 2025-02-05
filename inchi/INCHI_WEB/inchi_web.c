@@ -4,7 +4,7 @@
 #include "inchi_api.h"
 #include "util.h"
 #include <emscripten.h>
-
+#include "mode.h"
 
 /*
  * Note on the use of malloc():
@@ -27,13 +27,14 @@
  * Safe way to serialize to JSON.
  * See https://livebook.manning.com/book/webassembly-in-action/c-emscripten-macros/v-7/67
  */
-EM_JS(char*, to_json_inchi, (int return_code, char *inchi, char *auxinfo, char *message, char *log), {
+EM_JS(char*, to_json_inchi, (int return_code, char *inchi, char *auxinfo, char *message, char *log, char *ver), {
   const json = JSON.stringify({
     "return_code": return_code,
     "inchi": Module.UTF8ToString(inchi),
     "auxinfo": Module.UTF8ToString(auxinfo),
     "message": Module.UTF8ToString(message),
-    "log": Module.UTF8ToString(log)
+    "log": Module.UTF8ToString(log),
+    "ver": Module.UTF8ToString(ver)
   });
 
   const byteCount = Module.lengthBytesUTF8(json) + 1;
@@ -50,27 +51,26 @@ char* inchi_from_molfile(char *molfile, char *options) {
 
   output = malloc(sizeof(*output));
   memset(output, 0, sizeof(*output));
-
   ret = MakeINCHIFromMolfileText(molfile, options, output);
 
   switch(ret) {
     case mol2inchi_Ret_OKAY: {
-      json = to_json_inchi(0, output->szInChI, output->szAuxInfo, "", "");
+      json = to_json_inchi(0, output->szInChI, output->szAuxInfo, "", "", APP_DESCRIPTION);
       break;
     }
     case mol2inchi_Ret_WARNING: {
-      json = to_json_inchi(1, output->szInChI, output->szAuxInfo, output->szMessage, output->szLog);
+      json = to_json_inchi(1, output->szInChI, output->szAuxInfo, output->szMessage, output->szLog, APP_DESCRIPTION);
       break;
     }
     case mol2inchi_Ret_EOF:
     case mol2inchi_Ret_ERROR:
     case mol2inchi_Ret_ERROR_get:
     case mol2inchi_Ret_ERROR_comp: {
-      json = to_json_inchi(-1, "", "", output->szMessage, output->szLog);
+      json = to_json_inchi(-1, "", "", output->szMessage, output->szLog, APP_DESCRIPTION);
       break;
     }
     default: {
-      json = to_json_inchi(-1, "", "", "", "MakeINCHIFromMolfileText: Unknown return code");
+      json = to_json_inchi(-1, "", "", "", "MakeINCHIFromMolfileText: Unknown return code", APP_DESCRIPTION);
     }
   }
 
@@ -80,6 +80,8 @@ char* inchi_from_molfile(char *molfile, char *options) {
   // Caller should free this.
   return json;
 }
+
+
 
 
 
@@ -105,15 +107,15 @@ char* inchi_from_inchi(char* inchi, char* options) {
 
 	  switch(ret) {
 	    case inchi_Ret_OKAY: {
-	      json = to_json_inchi(0, output->szInChI, "", "", "");
+	      json = to_json_inchi(0, output->szInChI, "", "", "", APP_DESCRIPTION);
 	      break;
 	    }
 	    case inchi_Ret_WARNING: {
-	      json = to_json_inchi(1, output->szInChI, "", output->szMessage, output->szLog);
+	      json = to_json_inchi(1, output->szInChI, "", output->szMessage, output->szLog, APP_DESCRIPTION);
 	      break;
 	    }
 	    default: {
-		  json = to_json_inchi(1, "", "", output->szMessage, output->szLog);
+		  json = to_json_inchi(1, "", "", output->szMessage, output->szLog, APP_DESCRIPTION);
 	    }
 	  }
 
@@ -134,11 +136,12 @@ char* inchi_from_inchi(char* inchi, char* options) {
  * InChIKey from InChI
  * -------------------
  */
-EM_JS(char*, to_json_inchikey, (int return_code, char *inchikey, char *message), {
+EM_JS(char*, to_json_inchikey, (int return_code, char *inchikey, char *message, char *ver), {
   const json = JSON.stringify({
     "return_code": return_code,
     "inchikey": Module.UTF8ToString(inchikey),
-    "message": Module.UTF8ToString(message)
+    "message": Module.UTF8ToString(message),
+    "ver": Module.UTF8ToString(ver)
   });
 
   const byteCount = Module.lengthBytesUTF8(json) + 1;
@@ -157,35 +160,35 @@ char* inchikey_from_inchi(char* inchi) {
 
   switch(ret) {
     case INCHIKEY_OK: {
-      json = to_json_inchikey(0, szINCHIKey, "");
+      json = to_json_inchikey(0, szINCHIKey, "", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_UNKNOWN_ERROR: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Unknown program error");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Unknown program error", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_EMPTY_INPUT: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source string is empty");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source string is empty", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_INVALID_INCHI_PREFIX: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Invalid InChI prefix or invalid version (not 1)");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Invalid InChI prefix or invalid version (not 1)", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_NOT_ENOUGH_MEMORY: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Not enough memory");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Not enough memory", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_INVALID_INCHI: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source InChI has invalid layout");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source InChI has invalid layout", APP_DESCRIPTION);
       break;
     }
     case INCHIKEY_INVALID_STD_INCHI: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source standard InChI has invalid layout");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Source standard InChI has invalid layout", APP_DESCRIPTION);
       break;
     }
     default: {
-      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Unknown return code");
+      json = to_json_inchikey(-1, "", "GetINCHIKeyFromINCHI: Unknown return code", APP_DESCRIPTION);
     }
   }
 
@@ -197,12 +200,13 @@ char* inchikey_from_inchi(char* inchi) {
  * Molfile from InChI
  * ------------------
  */
-EM_JS(char*, to_json_molfile, (int return_code, char *molfile, char *message, char *log), {
+EM_JS(char*, to_json_molfile, (int return_code, char *molfile, char *message, char *log, char *ver), {
   const json = JSON.stringify({
     "return_code": return_code,
     "molfile": Module.UTF8ToString(molfile),
     "message": Module.UTF8ToString(message),
-    "log": Module.UTF8ToString(log)
+    "log": Module.UTF8ToString(log),
+    "ver": Module.UTF8ToString(ver)
   });
 
   const byteCount = Module.lengthBytesUTF8(json) + 1;
@@ -251,7 +255,7 @@ char* molfile_from_inchi(char* inchi, char* options) {
       // TODO: Handle return value of this API call.
       GetINCHIEx(&inputEx, &outputEx);
 
-      json = to_json_molfile(0, outputEx.szInChI, "", "");
+      json = to_json_molfile(0, outputEx.szInChI, "", "", APP_DESCRIPTION);
       FreeINCHI(&outputEx);
 
       break;
@@ -264,7 +268,7 @@ char* molfile_from_inchi(char* inchi, char* options) {
       // TODO: Handle return value of this API call.
       GetINCHIEx(&inputEx, &outputEx);
 
-      json = to_json_molfile(1, outputEx.szInChI, output->szMessage, output->szLog);
+      json = to_json_molfile(1, outputEx.szInChI, output->szMessage, output->szLog, APP_DESCRIPTION);
       FreeINCHI(&outputEx);
 
       break;
@@ -275,11 +279,11 @@ char* molfile_from_inchi(char* inchi, char* options) {
     case inchi_Ret_BUSY:
     case inchi_Ret_EOF:
     case inchi_Ret_SKIP: {
-      json = to_json_molfile(-1, "", output->szMessage, output->szLog);
+      json = to_json_molfile(-1, "", output->szMessage, output->szLog, APP_DESCRIPTION);
       break;
     }
     default:
-      json = to_json_molfile(-1, "", "", "GetStructFromINCHIEx: Unknown return code");
+      json = to_json_molfile(-1, "", "", "GetStructFromINCHIEx: Unknown return code", APP_DESCRIPTION);
   }
 
   FreeStructFromINCHIEx(output);
@@ -335,7 +339,7 @@ char* molfile_from_auxinfo(char* auxinfo, int bDoNotAddH, int bDiffUnkUndfStereo
       // TODO: Handle return value of this API call.
       GetINCHI(pInp, &inchi_output);
 
-      json = to_json_molfile(0, inchi_output.szInChI, "", "");
+      json = to_json_molfile(0, inchi_output.szInChI, "", "", APP_DESCRIPTION);
       FreeINCHI(&inchi_output);
 
       break;
@@ -347,7 +351,7 @@ char* molfile_from_auxinfo(char* auxinfo, int bDoNotAddH, int bDiffUnkUndfStereo
       // TODO: Handle return value of this API call.
       GetINCHI(pInp, &inchi_output);
 
-      json = to_json_molfile(1, inchi_output.szInChI, output->szErrMsg, "");
+      json = to_json_molfile(1, inchi_output.szInChI, output->szErrMsg, "", APP_DESCRIPTION);
       FreeINCHI(&inchi_output);
 
       break;
@@ -358,11 +362,11 @@ char* molfile_from_auxinfo(char* auxinfo, int bDoNotAddH, int bDiffUnkUndfStereo
     case inchi_Ret_BUSY:
     case inchi_Ret_EOF:
     case inchi_Ret_SKIP: {
-      json = to_json_molfile(-1, "", output->szErrMsg, "");
+      json = to_json_molfile(-1, "", output->szErrMsg, "", APP_DESCRIPTION);
       break;
     }
     default:
-      json = to_json_molfile(-1, "", "", "Get_inchi_Input_FromAuxInfo: Unknown return code");
+      json = to_json_molfile(-1, "", "", "Get_inchi_Input_FromAuxInfo: Unknown return code", APP_DESCRIPTION);
   }
 
   Free_inchi_Input(pInp);
@@ -430,12 +434,13 @@ char* molfile_from_auxinfo(char* auxinfo, int bDoNotAddH, int bDiffUnkUndfStereo
 * Safe way to serialize to JSON.
 * See https://livebook.manning.com/book/webassembly-in-action/c-emscripten-macros/v-7/67
 */
-EM_JS(char*, to_json_model, (int return_code, char *model, char *message, char *log), {
+EM_JS(char*, to_json_model, (int return_code, char *model, char *message, char *log, char *ver), {
 	const json = JSON.stringify({
 	 "return_code": return_code,
 	 "model": Module.UTF8ToString(model),
 	 "message": Module.UTF8ToString(message),
-	 "log": Module.UTF8ToString(log)
+	 "log": Module.UTF8ToString(log),
+     "ver": Module.UTF8ToString(ver)
 	});
 	const byteCount = Module.lengthBytesUTF8(json) + 1;
 	const jsonPtr = Module._malloc(byteCount);
@@ -716,7 +721,7 @@ char* model_from_inchi(char* inchi, char* options) {
 		char buf[numatoms*160 + numatoms*55 + numstereo*100];
 		buf[0] = 0;
 	   getModelJSON(buf, output);
-	   json = to_json_model(0, buf, szMsg, szLog);
+	   json = to_json_model(0, buf, szMsg, szLog, APP_DESCRIPTION);
 	   break;
 	 }
 	 case inchi_Ret_ERROR:
@@ -725,11 +730,11 @@ char* model_from_inchi(char* inchi, char* options) {
 	 case inchi_Ret_BUSY:
 	 case inchi_Ret_EOF:
 	 case inchi_Ret_SKIP: {
-	   json = to_json_molfile(-1, "", output->szMessage, output->szLog);
+	   json = to_json_model(-1, "", output->szMessage, output->szLog, APP_DESCRIPTION);
 	   break;
 	 }
 	 default:
-	   json = to_json_molfile(-1, "", "", "GetStructFromINCHIEx: Unknown return code");
+	   json = to_json_model(-1, "", "", "GetStructFromINCHIEx: Unknown return code", APP_DESCRIPTION);
 	}
 
 	  //Free_inchi_Input(input);

@@ -56,22 +56,20 @@ function doConvertToMol() {
 			return;
 		}
 	}
-	if (ret)
-		alert(ret.molfile ? ret.molfile : ret.msg + "\n" + ret.log);
+	process(ret, "molfile");
 }
 
-function doGetStandardInchi() {
+function doGetStandardInchi(options) {
 	var input = getInput3(false);
 	var ret;
 	try {
-		var ret = Jmol.inchiFromInchi(input);
+		var ret = Jmol.inchiFromInchi(input,options);
 	} catch (e) {
 		console.error(e);
 		alert(`Caught exception from inchiFromInchi(): ${e}`);
 		return;
 	}
-	if (ret)
-		alert(ret.inchi ? ret.inchi : ret.msg + "\n" + ret.log);
+	process(ret, "inchi");
 }
 
 function doGetModel() {
@@ -84,8 +82,20 @@ function doGetModel() {
 			alert(`Caught exception from modelFromInchi(): ${e}`);
 			return;
 		}
-	if (ret)
-		alert(ret.model ? ret.model : ret.msg + "\n" + ret.log);
+		process(ret, "model");
 }
 
+function process(ret, key) {
+	if (!ret)
+		return;
+	document.getElementById("ver").innerHTML = ret.ver;
+	document.getElementById("message").innerHTML = ret.message;
+	document.getElementById("log").innerHTML = ret.log.replaceAll("\n","<br>");
+	if (ret[key] && ret.return_code <= 0)
+		alert(ret[key])
 
+		
+	
+	
+	
+}
