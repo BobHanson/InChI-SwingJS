@@ -3,7 +3,7 @@
 	<name>InChI-SwingJS</name>
 	<comment></comment>
 	<projects>
-	</projects>
+	".classpath"</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
