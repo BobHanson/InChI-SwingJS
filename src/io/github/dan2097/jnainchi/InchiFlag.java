@@ -116,17 +116,23 @@ public enum InchiFlag {
     return super.toString();
   }
   
+  private static HashMap<String, InChiFlag> map;
+
   /**
-   * New here. 
+   * Get a flag from a string, case insensitive.
+   * Cache the names for better performance.
    * 
    * @param name
-   * @return
+   * @return the matching InchiFlag or null
+   * @author Bob Hanson
    */
   public static InchiFlag getFlagFromName(String name) {
-    for (InchiFlag item : values())
-      if (item.toString().equalsIgnoreCase(name))
-        return item;
-    return null;
+    if (map == null) {
+      map = new HashMap<>();
+      for (InchiFlag item : values())
+        map.put(item.toString().toLowerCase(), item);
+    }
+    return map.get(name.toLowerCase());
   }
 
 }
