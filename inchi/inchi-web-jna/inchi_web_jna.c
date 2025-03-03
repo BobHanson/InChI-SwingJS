@@ -5,6 +5,7 @@
 #include "util.h"
 #include <emscripten.h>
 #include "mode.h"
+#include "ixa_mol.h"
 
 /*
  * Note on the use of malloc():
@@ -743,3 +744,34 @@ char* model_from_inchi(char* inchi, char* options) {
 	
 	  return json;
 }
+
+// some testing:
+
+IXA_MOL_HANDLE jna_createMol() {
+    IXA_MOL_HANDLE nativeMol = IXA_MOL_Create(NULL); 
+    IXA_MOL_ReserveSpace(NULL, nativeMol, 3, 3, 3);
+    return nativeMol;
+}
+
+IXA_MOL_HANDLE jna_createMolTest() {
+    IXA_MOL_HANDLE nativeMol = jna_createMol();
+    IXA_ATOMID nativeAtom = IXA_MOL_CreateAtom(NULL, nativeMol);
+    IXA_MOL_SetAtomX(NULL, nativeMol, nativeAtom, 12.345);
+    return nativeMol;
+}
+
+
+char* jna_getMolAtomX(IXA_MOL_HANDLE nativeMol, IXA_ATOMID nativeAtom) {   
+    char* s = (char*)malloc(100);
+    s[0] = 0;
+    double x = IXA_MOL_GetAtomX(NULL, nativeMol, nativeAtom);
+    sprintf(s, "pt_mol %ld x=%f", (long) &nativeMol, x);
+    return s;
+}
+
+char* jna_createMolTest2() {
+    IXA_MOL_HANDLE mol = jna_createMolTest();
+    return jna_getMolAtomX(mol, (IXA_ATOMID) 1);
+}
+
+
