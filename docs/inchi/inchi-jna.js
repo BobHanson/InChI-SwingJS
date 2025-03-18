@@ -69,47 +69,68 @@ async function test(inchiVersion) {
   //var ptr = module.ccall("jna_createMolString", "number", [], []);
   //var s = module.ccall("jna_getMolAtomX", "string", ["number", "number"], [ptr, 1]);
   //alert(ptr); 
-  var s = module.ccall("jna_createMolString", "string", [], []);
+  //var s = module.ccall("jna_createMolString", "string", [], []);
   //alert("s " + s);
 
-  var mol =  module.ccall("jna_createMolAddress", "number", [], []);
-  var s  =  module.ccall("jna_getMolAtomX", "string", ["number", "number"], [mol, 1]);
-  alert("s " + s);
-  var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["String", "number", "number"], [null, mol, 1]);
+  //var mol =  module.ccall("jna_createMolAddress", "number", [], []);
+  //var s  =  module.ccall("jna_getMolAtomX", "string", ["number", "number"], [mol, 1]);
+  //alert("s " + s);
+  //var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["String", "number", "number"], [null, mol, 1]);
   //alert(x);
 
-  var mol =  module.ccall("jna_createMolAddress", "number", [], []);
-  var s  =  module.ccall("jna_getMolAtomX", "string", ["number", "number"], [mol, 1]);
+  //var mol =  module.ccall("jna_createMolAddress", "number", [], []);
+  //var s  =  module.ccall("jna_getMolAtomX", "string", ["number", "number"], [mol, 1]);
   //alert("s " + s);
 
-  var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["string", "number", "number"], [null, mol, 1]);
+  //var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["string", "number", "number"], [null, mol, 1]);
   //alert(x);
 
-  var nativeMol = module.ccall("IXA_MOL_Create", "number", ["string"], [null]);
-  module.ccall("IXA_MOL_ReserveSpace", "number", ["string", "number", "number", "number", "number"], [null, nativeMol, 3, 3, 3]);
-  var nativeAtom = module.ccall("IXA_MOL_CreateAtom", "number", ["string", "number"], [null, nativeMol]);
-  module.ccall("IXA_MOL_SetAtomX", "string", ["string", "number", "number", "number"], [null, nativeMol, nativeAtom, 543.21]);
-  var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["String", "number", "number"], [null, nativeMol, nativeAtom]);
+ // var nativeMol = module.ccall("IXA_MOL_Create", "number", ["string"], [null]);
+  //module.ccall("IXA_MOL_ReserveSpace", "number", ["string", "number", "number", "number", "number"], [null, nativeMol, 3, 3, 3]);
+  //var nativeAtom = module.ccall("IXA_MOL_CreateAtom", "number", ["string", "number"], [null, nativeMol]);
+  //module.ccall("IXA_MOL_SetAtomX", "string", ["string", "number", "number", "number"], [null, nativeMol, nativeAtom, 543.21]);
+  //var x  =  module.ccall("IXA_MOL_GetAtomX", "number", ["String", "number", "number"], [null, nativeMol, nativeAtom]);
   //alert(x);
+
+//  IxaFunctions.IXA_MOL_Create = module.cwrap("IXA_MOL_Create", "number", ["number"]);
+//  IxaFunctions.IXA_MOL_ReserveSpace = module.cwrap("IXA_MOL_ReserveSpace", null, ["number", "number", "number", "number", "number"]);
+//  IxaFunctions.IXA_MOL_CreateAtom = module.cwrap("IXA_MOL_CreateAtom", "number", ["number", "number"]);
+//  IxaFunctions.IXA_MOL_SetAtomX = module.cwrap("IXA_MOL_SetAtomX", null, ["number", "number", "number", "number"]);
+//  IxaFunctions.IXA_MOL_GetAtomX = module.cwrap("IXA_MOL_GetAtomX", "number", ["number", "number", "number"]);
+//  IxaFunctions.IXA_MOL_Destroy = module.cwrap("IXA_MOL_Destroy", null, ["number", "number"]);
+
+//  IxaFunctions.IXA_MOL_SetAtomElement = module.cwrap("IXA_MOL_SetAtomElement", null, ["number", "number", "number", "string"]);
+//  IxaFunctions.IXA_MOL_GetAtomElement = module.cwrap("IXA_MOL_GetAtomElement", "string", ["number", "number", "number"]);
+
 
   IxaFunctions.IXA_STATUS_Create = module.cwrap("IXA_STATUS_Create", null, []);
-  IxaFunctions.IXA_MOL_Create = module.cwrap("IXA_MOL_Create", "number", ["number"]);
-  IxaFunctions.IXA_MOL_ReserveSpace = module.cwrap("IXA_MOL_ReserveSpace", null, ["number", "number", "number", "number", "number"]);
-  IxaFunctions.IXA_MOL_CreateAtom = module.cwrap("IXA_MOL_CreateAtom", "number", ["number", "number"]);
-  IxaFunctions.IXA_MOL_SetAtomX = module.cwrap("IXA_MOL_SetAtomX", null, ["number", "number", "number", "number"]);
-  IxaFunctions.IXA_MOL_GetAtomX = module.cwrap("IXA_MOL_GetAtomX", "number", ["number", "number", "number"]);
-  IxaFunctions.IXA_MOL_Destroy = module.cwrap("IXA_MOL_Destroy", null, ["number", "number"]);
-
   var logger = IxaFunctions.IXA_STATUS_Create();
-  var nativeMol = IxaFunctions.IXA_MOL_Create(logger);
-  IxaFunctions.IXA_MOL_ReserveSpace(logger, nativeMol, 3, 3, 3);  
-  var nativeAtom = IxaFunctions.IXA_MOL_CreateAtom(logger, nativeMol);
-  IxaFunctions.IXA_MOL_SetAtomX(logger, nativeMol, nativeAtom, 543.21);
-  var x = IxaFunctions.IXA_MOL_GetAtomX(logger, nativeMol, nativeAtom);
-  IxaFunctions.IXA_MOL_Destroy(logger, nativeMol);
+//  var nativeMol = IxaFunctions.IXA_MOL_Create(logger);
+//  IxaFunctions.IXA_MOL_ReserveSpace(logger, nativeMol, 3, 3, 3);  
+//  var nativeAtom = IxaFunctions.IXA_MOL_CreateAtom(logger, nativeMol);
+//  IxaFunctions.IXA_MOL_SetAtomX(logger, nativeMol, nativeAtom, 543.21);
+//  var x = IxaFunctions.IXA_MOL_GetAtomX(logger, nativeMol, nativeAtom);
+//  IxaFunctions.IXA_MOL_SetAtomElement(logger, nativeMol, nativeAtom, "N");
+//  alert(x);
+//  var s = IxaFunctions.IXA_MOL_GetAtomElement(logger, nativeMol, nativeAtom);
+//alert(s)
 
-  alert(x);
+  
+//IxaFunctions.IXA_MOL_GetAtomElement = module.cwrap("IXA_MOL_GetAtomElement", "string", ["number", "number", "number"]);
 
+//  IxaFunctions.IXA_MOL_Destroy(logger, nativeMol);
+
+
+IxaFunctions.IXA_INCHIKEYBUILDER_Create = module.cwrap("IXA_INCHIKEYBUILDER_Create", "number", ["number"]);
+  var hbuilder = IxaFunctions.IXA_INCHIKEYBUILDER_Create()
+
+
+IxaFunctions.IXA_INCHIKEYBUILDER_SetInChI = module.cwrap("IXA_INCHIKEYBUILDER_SetInChI", "number", ["number", "number", "string"]);
+IxaFunctions.IXA_INCHIKEYBUILDER_SetInChI(logger, hbuilder, "InChI=1S/C4H8/c1-3-4-2/h3-4H,1-2H3/b4-3+")
+
+IxaFunctions.IXA_INCHIKEYBUILDER_GetInChIKey = module.cwrap("IXA_INCHIKEYBUILDER_GetInChIKey", "string", ["number", "number"]);
+var s = IxaFunctions.IXA_INCHIKEYBUILDER_GetInChIKey(logger, hbuilder);
+alert(s);
 
 
 }

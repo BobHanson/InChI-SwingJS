@@ -819,7 +819,7 @@ int INCHI_DECL IXA_MOL_GetNumAtoms( IXA_STATUS_HANDLE hStatus,
     INCHIMOL* molecule = MOL_Unpack( hStatus, hMolecule );
     if (!molecule)
     {
-        return 0;
+        return -1;
     }
 
     return molecule->atom_count;

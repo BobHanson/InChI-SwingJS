@@ -5,3 +5,7 @@
 **/debug/**/*
 **/tbb/**/*
 /target/
+/ketcher/react-app/node_modules
+/ketcher/react-app/build
+/ketcher/package.json
+

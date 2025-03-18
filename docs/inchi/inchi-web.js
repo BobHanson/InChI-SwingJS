@@ -80,6 +80,660 @@ Module['ready'] = new Promise(function(resolve, reject) {
       }
     
 
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_CheckINCHI')) {
+        Object.defineProperty(Module['ready'], '_CheckINCHI', { configurable: true, get: function() { abort('You are getting _CheckINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_CheckINCHI', { configurable: true, set: function() { abort('You are setting _CheckINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_CheckINCHIKey')) {
+        Object.defineProperty(Module['ready'], '_CheckINCHIKey', { configurable: true, get: function() { abort('You are getting _CheckINCHIKey on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_CheckINCHIKey', { configurable: true, set: function() { abort('You are setting _CheckINCHIKey on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Free_inchi_Input')) {
+        Object.defineProperty(Module['ready'], '_Free_inchi_Input', { configurable: true, get: function() { abort('You are getting _Free_inchi_Input on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Free_inchi_Input', { configurable: true, set: function() { abort('You are setting _Free_inchi_Input on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Free_std_inchi_Input')) {
+        Object.defineProperty(Module['ready'], '_Free_std_inchi_Input', { configurable: true, get: function() { abort('You are getting _Free_std_inchi_Input on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Free_std_inchi_Input', { configurable: true, set: function() { abort('You are setting _Free_std_inchi_Input on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_FreeINCHI')) {
+        Object.defineProperty(Module['ready'], '_FreeINCHI', { configurable: true, get: function() { abort('You are getting _FreeINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_FreeINCHI', { configurable: true, set: function() { abort('You are setting _FreeINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_FreeStdINCHI')) {
+        Object.defineProperty(Module['ready'], '_FreeStdINCHI', { configurable: true, get: function() { abort('You are getting _FreeStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_FreeStdINCHI', { configurable: true, set: function() { abort('You are setting _FreeStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_FreeStructFromINCHI')) {
+        Object.defineProperty(Module['ready'], '_FreeStructFromINCHI', { configurable: true, get: function() { abort('You are getting _FreeStructFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_FreeStructFromINCHI', { configurable: true, set: function() { abort('You are setting _FreeStructFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_FreeStructFromINCHIEx')) {
+        Object.defineProperty(Module['ready'], '_FreeStructFromINCHIEx', { configurable: true, get: function() { abort('You are getting _FreeStructFromINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_FreeStructFromINCHIEx', { configurable: true, set: function() { abort('You are setting _FreeStructFromINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_FreeStructFromStdINCHI')) {
+        Object.defineProperty(Module['ready'], '_FreeStructFromStdINCHI', { configurable: true, get: function() { abort('You are getting _FreeStructFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_FreeStructFromStdINCHI', { configurable: true, set: function() { abort('You are setting _FreeStructFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Get_inchi_Input_FromAuxInfo')) {
+        Object.defineProperty(Module['ready'], '_Get_inchi_Input_FromAuxInfo', { configurable: true, get: function() { abort('You are getting _Get_inchi_Input_FromAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Get_inchi_Input_FromAuxInfo', { configurable: true, set: function() { abort('You are setting _Get_inchi_Input_FromAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_Get_std_inchi_Input_FromAuxInfo')) {
+        Object.defineProperty(Module['ready'], '_Get_std_inchi_Input_FromAuxInfo', { configurable: true, get: function() { abort('You are getting _Get_std_inchi_Input_FromAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_Get_std_inchi_Input_FromAuxInfo', { configurable: true, set: function() { abort('You are setting _Get_std_inchi_Input_FromAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetINCHI', { configurable: true, get: function() { abort('You are getting _GetINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetINCHI', { configurable: true, set: function() { abort('You are setting _GetINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetINCHIEx')) {
+        Object.defineProperty(Module['ready'], '_GetINCHIEx', { configurable: true, get: function() { abort('You are getting _GetINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetINCHIEx', { configurable: true, set: function() { abort('You are setting _GetINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetINCHIfromINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetINCHIfromINCHI', { configurable: true, get: function() { abort('You are getting _GetINCHIfromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetINCHIfromINCHI', { configurable: true, set: function() { abort('You are setting _GetINCHIfromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetINCHIKeyFromINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetINCHIKeyFromINCHI', { configurable: true, get: function() { abort('You are getting _GetINCHIKeyFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetINCHIKeyFromINCHI', { configurable: true, set: function() { abort('You are setting _GetINCHIKeyFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetStdINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetStdINCHI', { configurable: true, get: function() { abort('You are getting _GetStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetStdINCHI', { configurable: true, set: function() { abort('You are setting _GetStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetStdINCHIKeyFromStdINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetStdINCHIKeyFromStdINCHI', { configurable: true, get: function() { abort('You are getting _GetStdINCHIKeyFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetStdINCHIKeyFromStdINCHI', { configurable: true, set: function() { abort('You are setting _GetStdINCHIKeyFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetStructFromINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetStructFromINCHI', { configurable: true, get: function() { abort('You are getting _GetStructFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetStructFromINCHI', { configurable: true, set: function() { abort('You are setting _GetStructFromINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetStructFromINCHIEx')) {
+        Object.defineProperty(Module['ready'], '_GetStructFromINCHIEx', { configurable: true, get: function() { abort('You are getting _GetStructFromINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetStructFromINCHIEx', { configurable: true, set: function() { abort('You are setting _GetStructFromINCHIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_GetStructFromStdINCHI')) {
+        Object.defineProperty(Module['ready'], '_GetStructFromStdINCHI', { configurable: true, get: function() { abort('You are getting _GetStructFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_GetStructFromStdINCHI', { configurable: true, set: function() { abort('You are setting _GetStructFromStdINCHI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_CheckOption')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_CheckOption', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_CheckOption on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_CheckOption', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_CheckOption on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_CheckOption_Stereo')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_CheckOption_Stereo', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_CheckOption_Stereo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_CheckOption_Stereo', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_CheckOption_Stereo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_Create')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_Create', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_Create', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_Destroy')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_Destroy', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_Destroy', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_GetAuxInfo')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetAuxInfo', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_GetAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetAuxInfo', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_GetAuxInfo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_GetInChI')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetInChI', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_GetInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetInChI', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_GetInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_GetInChIEx')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetInChIEx', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_GetInChIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetInChIEx', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_GetInChIEx on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_GetLog')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetLog', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_GetLog on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_GetLog', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_GetLog on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_SetMolecule')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetMolecule', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_SetMolecule on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetMolecule', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_SetMolecule on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_SetOption')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_SetOption on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_SetOption on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Stereo')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Stereo', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_SetOption_Stereo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Stereo', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_SetOption_Stereo on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_SetOption_Timeout on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_SetOption_Timeout on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds', { configurable: true, get: function() { abort('You are getting _IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds', { configurable: true, set: function() { abort('You are setting _IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIKEYBUILDER_Create')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_Create', { configurable: true, get: function() { abort('You are getting _IXA_INCHIKEYBUILDER_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_Create', { configurable: true, set: function() { abort('You are setting _IXA_INCHIKEYBUILDER_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIKEYBUILDER_Destroy')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_Destroy', { configurable: true, get: function() { abort('You are getting _IXA_INCHIKEYBUILDER_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_Destroy', { configurable: true, set: function() { abort('You are setting _IXA_INCHIKEYBUILDER_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIKEYBUILDER_GetInChIKey')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_GetInChIKey', { configurable: true, get: function() { abort('You are getting _IXA_INCHIKEYBUILDER_GetInChIKey on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_GetInChIKey', { configurable: true, set: function() { abort('You are setting _IXA_INCHIKEYBUILDER_GetInChIKey on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_INCHIKEYBUILDER_SetInChI')) {
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_SetInChI', { configurable: true, get: function() { abort('You are getting _IXA_INCHIKEYBUILDER_SetInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_INCHIKEYBUILDER_SetInChI', { configurable: true, set: function() { abort('You are setting _IXA_INCHIKEYBUILDER_SetInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_Clear')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Clear', { configurable: true, get: function() { abort('You are getting _IXA_MOL_Clear on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Clear', { configurable: true, set: function() { abort('You are setting _IXA_MOL_Clear on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_Create')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Create', { configurable: true, get: function() { abort('You are getting _IXA_MOL_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Create', { configurable: true, set: function() { abort('You are setting _IXA_MOL_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_CreateAtom')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateAtom', { configurable: true, get: function() { abort('You are getting _IXA_MOL_CreateAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateAtom', { configurable: true, set: function() { abort('You are setting _IXA_MOL_CreateAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_CreateBond')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateBond', { configurable: true, get: function() { abort('You are getting _IXA_MOL_CreateBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateBond', { configurable: true, set: function() { abort('You are setting _IXA_MOL_CreateBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_CreateStereoAntiRectangle')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoAntiRectangle', { configurable: true, get: function() { abort('You are getting _IXA_MOL_CreateStereoAntiRectangle on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoAntiRectangle', { configurable: true, set: function() { abort('You are setting _IXA_MOL_CreateStereoAntiRectangle on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_CreateStereoRectangle')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoRectangle', { configurable: true, get: function() { abort('You are getting _IXA_MOL_CreateStereoRectangle on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoRectangle', { configurable: true, set: function() { abort('You are setting _IXA_MOL_CreateStereoRectangle on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_CreateStereoTetrahedron')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoTetrahedron', { configurable: true, get: function() { abort('You are getting _IXA_MOL_CreateStereoTetrahedron on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_CreateStereoTetrahedron', { configurable: true, set: function() { abort('You are setting _IXA_MOL_CreateStereoTetrahedron on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_Destroy')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Destroy', { configurable: true, get: function() { abort('You are getting _IXA_MOL_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_Destroy', { configurable: true, set: function() { abort('You are setting _IXA_MOL_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomAtomicNumber')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomAtomicNumber', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomAtomicNumber on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomAtomicNumber', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomAtomicNumber on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomBond')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomBond', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomBond', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomCharge')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomCharge', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomCharge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomCharge', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomCharge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomElement')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomElement', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomElement on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomElement', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomElement on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomHydrogens')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomHydrogens', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomHydrogens on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomHydrogens', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomHydrogens on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomId')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomId', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomId', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomIndex')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomIndex', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomIndex', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomMass')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomMass', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomMass on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomMass', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomMass on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomNumBonds')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomNumBonds', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomNumBonds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomNumBonds', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomNumBonds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomRadical')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomRadical', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomRadical on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomRadical', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomRadical on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomX')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomX', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomX', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomY')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomY', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomY on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomY', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomY on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetAtomZ')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomZ', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetAtomZ on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetAtomZ', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetAtomZ on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondAtom1')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondAtom1', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondAtom1 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondAtom1', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondAtom1 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondAtom2')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondAtom2', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondAtom2 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondAtom2', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondAtom2 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondId')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondId', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondId', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondIndex')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondIndex', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondIndex', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondOtherAtom')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondOtherAtom', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondOtherAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondOtherAtom', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondOtherAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondType')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondType', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondType on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondType', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondType on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetBondWedge')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondWedge', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetBondWedge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetBondWedge', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetBondWedge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetChiral')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetChiral', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetChiral on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetChiral', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetChiral on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetCommonBond')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetCommonBond', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetCommonBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetCommonBond', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetCommonBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetDblBondConfig')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetDblBondConfig', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetDblBondConfig on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetDblBondConfig', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetDblBondConfig on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetNumAtoms')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumAtoms', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetNumAtoms on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumAtoms', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetNumAtoms on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetNumBonds')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumBonds', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetNumBonds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumBonds', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetNumBonds on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetNumStereos')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumStereos', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetNumStereos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetNumStereos', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetNumStereos on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoCentralAtom')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoCentralAtom', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoCentralAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoCentralAtom', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoCentralAtom on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoCentralBond')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoCentralBond', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoCentralBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoCentralBond', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoCentralBond on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoId')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoId', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoId', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoId on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoIndex')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoIndex', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoIndex', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoIndex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoNumVertices')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoNumVertices', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoNumVertices on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoNumVertices', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoNumVertices on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoParity')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoParity', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoParity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoParity', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoParity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoTopology')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoTopology', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoTopology on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoTopology', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoTopology on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_GetStereoVertex')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoVertex', { configurable: true, get: function() { abort('You are getting _IXA_MOL_GetStereoVertex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_GetStereoVertex', { configurable: true, set: function() { abort('You are setting _IXA_MOL_GetStereoVertex on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_ReadInChI')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReadInChI', { configurable: true, get: function() { abort('You are getting _IXA_MOL_ReadInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReadInChI', { configurable: true, set: function() { abort('You are setting _IXA_MOL_ReadInChI on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_ReadMolfile')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReadMolfile', { configurable: true, get: function() { abort('You are getting _IXA_MOL_ReadMolfile on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReadMolfile', { configurable: true, set: function() { abort('You are setting _IXA_MOL_ReadMolfile on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_ReserveSpace')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReserveSpace', { configurable: true, get: function() { abort('You are getting _IXA_MOL_ReserveSpace on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_ReserveSpace', { configurable: true, set: function() { abort('You are setting _IXA_MOL_ReserveSpace on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomAtomicNumber')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomAtomicNumber', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomAtomicNumber on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomAtomicNumber', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomAtomicNumber on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomCharge')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomCharge', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomCharge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomCharge', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomCharge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomElement')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomElement', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomElement on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomElement', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomElement on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomHydrogens')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomHydrogens', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomHydrogens on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomHydrogens', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomHydrogens on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomMass')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomMass', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomMass on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomMass', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomMass on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomRadical')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomRadical', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomRadical on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomRadical', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomRadical on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomX')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomX', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomX', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomY')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomY', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomY on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomY', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomY on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetAtomZ')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomZ', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetAtomZ on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetAtomZ', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetAtomZ on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetBondType')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetBondType', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetBondType on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetBondType', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetBondType on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetBondWedge')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetBondWedge', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetBondWedge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetBondWedge', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetBondWedge on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetChiral')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetChiral', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetChiral on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetChiral', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetChiral on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetDblBondConfig')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetDblBondConfig', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetDblBondConfig on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetDblBondConfig', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetDblBondConfig on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_MOL_SetStereoParity')) {
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetStereoParity', { configurable: true, get: function() { abort('You are getting _IXA_MOL_SetStereoParity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_MOL_SetStereoParity', { configurable: true, set: function() { abort('You are setting _IXA_MOL_SetStereoParity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_Clear')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Clear', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_Clear on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Clear', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_Clear on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_Create')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Create', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Create', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_Create on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_Destroy')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Destroy', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_Destroy', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_Destroy on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_GetCount')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetCount', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_GetCount on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetCount', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_GetCount on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_GetMessage')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetMessage', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_GetMessage on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetMessage', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_GetMessage on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_GetSeverity')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetSeverity', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_GetSeverity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_GetSeverity', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_GetSeverity on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_HasError')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_HasError', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_HasError on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_HasError', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_HasError on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_IXA_STATUS_HasWarning')) {
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_HasWarning', { configurable: true, get: function() { abort('You are getting _IXA_STATUS_HasWarning on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_IXA_STATUS_HasWarning', { configurable: true, set: function() { abort('You are setting _IXA_STATUS_HasWarning on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_MakeINCHIFromMolfileText')) {
+        Object.defineProperty(Module['ready'], '_MakeINCHIFromMolfileText', { configurable: true, get: function() { abort('You are getting _MakeINCHIFromMolfileText on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_MakeINCHIFromMolfileText', { configurable: true, set: function() { abort('You are setting _MakeINCHIFromMolfileText on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_jna_createMol')) {
+        Object.defineProperty(Module['ready'], '_jna_createMol', { configurable: true, get: function() { abort('You are getting _jna_createMol on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_jna_createMol', { configurable: true, set: function() { abort('You are setting _jna_createMol on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_jna_createMolTest')) {
+        Object.defineProperty(Module['ready'], '_jna_createMolTest', { configurable: true, get: function() { abort('You are getting _jna_createMolTest on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_jna_createMolTest', { configurable: true, set: function() { abort('You are setting _jna_createMolTest on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_jna_getMolAtomX')) {
+        Object.defineProperty(Module['ready'], '_jna_getMolAtomX', { configurable: true, get: function() { abort('You are getting _jna_getMolAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_jna_getMolAtomX', { configurable: true, set: function() { abort('You are setting _jna_getMolAtomX on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
+      if (!Object.getOwnPropertyDescriptor(Module['ready'], '_jna_createMolTest2')) {
+        Object.defineProperty(Module['ready'], '_jna_createMolTest2', { configurable: true, get: function() { abort('You are getting _jna_createMolTest2 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+        Object.defineProperty(Module['ready'], '_jna_createMolTest2', { configurable: true, set: function() { abort('You are setting _jna_createMolTest2 on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
+      }
+    
+
       if (!Object.getOwnPropertyDescriptor(Module['ready'], '___stdio_exit')) {
         Object.defineProperty(Module['ready'], '___stdio_exit', { configurable: true, get: function() { abort('You are getting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
         Object.defineProperty(Module['ready'], '___stdio_exit', { configurable: true, set: function() { abort('You are setting ___stdio_exit on the Promise object, instead of the instance. Use .then() to get called back with the instance, see the MODULARIZE docs in src/settings.js') } });
@@ -1679,10 +2333,10 @@ var tempI64;
 var ASM_CONSTS = {
   
 };
-function to_json_inchi(return_code,inchi,auxinfo,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "inchi": Module.UTF8ToString(inchi), "auxinfo": Module.UTF8ToString(auxinfo), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_inchikey(return_code,inchikey,message,ver){ const json = JSON.stringify({ "return_code": return_code, "inchikey": Module.UTF8ToString(inchikey), "message": Module.UTF8ToString(message), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_model(return_code,model,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "model": Module.UTF8ToString(model), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
-function to_json_molfile(return_code,molfile,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "molfile": Module.UTF8ToString(molfile), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "ver": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_inchi(return_code,inchi,auxinfo,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "inchi": Module.UTF8ToString(inchi), "auxinfo": Module.UTF8ToString(auxinfo), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "version": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_inchikey(return_code,inchikey,message,ver){ const json = JSON.stringify({ "return_code": return_code, "inchikey": Module.UTF8ToString(inchikey), "message": Module.UTF8ToString(message), "version": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_model(return_code,model,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "model": Module.UTF8ToString(model), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "version": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
+function to_json_molfile(return_code,molfile,message,log,ver){ const json = JSON.stringify({ "return_code": return_code, "molfile": Module.UTF8ToString(molfile), "message": Module.UTF8ToString(message), "log": Module.UTF8ToString(log), "version": Module.UTF8ToString(ver) }); const byteCount = Module.lengthBytesUTF8(json) + 1; const jsonPtr = Module._malloc(byteCount); Module.stringToUTF8(json, jsonPtr, byteCount); return jsonPtr; }
 
 
 
@@ -4380,6 +5034,321 @@ var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 var ___errno_location = Module["___errno_location"] = createExportWrapper("__errno_location");
 
 /** @type {function(...*):?} */
+var _GetStdINCHIKeyFromStdINCHI = Module["_GetStdINCHIKeyFromStdINCHI"] = createExportWrapper("GetStdINCHIKeyFromStdINCHI");
+
+/** @type {function(...*):?} */
+var _GetINCHIKeyFromINCHI = Module["_GetINCHIKeyFromINCHI"] = createExportWrapper("GetINCHIKeyFromINCHI");
+
+/** @type {function(...*):?} */
+var _CheckINCHIKey = Module["_CheckINCHIKey"] = createExportWrapper("CheckINCHIKey");
+
+/** @type {function(...*):?} */
+var _Get_std_inchi_Input_FromAuxInfo = Module["_Get_std_inchi_Input_FromAuxInfo"] = createExportWrapper("Get_std_inchi_Input_FromAuxInfo");
+
+/** @type {function(...*):?} */
+var _Get_inchi_Input_FromAuxInfo = Module["_Get_inchi_Input_FromAuxInfo"] = createExportWrapper("Get_inchi_Input_FromAuxInfo");
+
+/** @type {function(...*):?} */
+var _Free_inchi_Input = Module["_Free_inchi_Input"] = createExportWrapper("Free_inchi_Input");
+
+/** @type {function(...*):?} */
+var _Free_std_inchi_Input = Module["_Free_std_inchi_Input"] = createExportWrapper("Free_std_inchi_Input");
+
+/** @type {function(...*):?} */
+var _FreeINCHI = Module["_FreeINCHI"] = createExportWrapper("FreeINCHI");
+
+/** @type {function(...*):?} */
+var _FreeStdINCHI = Module["_FreeStdINCHI"] = createExportWrapper("FreeStdINCHI");
+
+/** @type {function(...*):?} */
+var _FreeStructFromStdINCHI = Module["_FreeStructFromStdINCHI"] = createExportWrapper("FreeStructFromStdINCHI");
+
+/** @type {function(...*):?} */
+var _FreeStructFromINCHI = Module["_FreeStructFromINCHI"] = createExportWrapper("FreeStructFromINCHI");
+
+/** @type {function(...*):?} */
+var _GetStdINCHI = Module["_GetStdINCHI"] = createExportWrapper("GetStdINCHI");
+
+/** @type {function(...*):?} */
+var _GetINCHI = Module["_GetINCHI"] = createExportWrapper("GetINCHI");
+
+/** @type {function(...*):?} */
+var _GetINCHIEx = Module["_GetINCHIEx"] = createExportWrapper("GetINCHIEx");
+
+/** @type {function(...*):?} */
+var _CheckINCHI = Module["_CheckINCHI"] = createExportWrapper("CheckINCHI");
+
+/** @type {function(...*):?} */
+var _GetINCHIfromINCHI = Module["_GetINCHIfromINCHI"] = createExportWrapper("GetINCHIfromINCHI");
+
+/** @type {function(...*):?} */
+var _GetStructFromStdINCHI = Module["_GetStructFromStdINCHI"] = createExportWrapper("GetStructFromStdINCHI");
+
+/** @type {function(...*):?} */
+var _GetStructFromINCHIEx = Module["_GetStructFromINCHIEx"] = createExportWrapper("GetStructFromINCHIEx");
+
+/** @type {function(...*):?} */
+var _GetStructFromINCHI = Module["_GetStructFromINCHI"] = createExportWrapper("GetStructFromINCHI");
+
+/** @type {function(...*):?} */
+var _FreeStructFromINCHIEx = Module["_FreeStructFromINCHIEx"] = createExportWrapper("FreeStructFromINCHIEx");
+
+/** @type {function(...*):?} */
+var _MakeINCHIFromMolfileText = Module["_MakeINCHIFromMolfileText"] = createExportWrapper("MakeINCHIFromMolfileText");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_Create = Module["_IXA_INCHIBUILDER_Create"] = createExportWrapper("IXA_INCHIBUILDER_Create");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_Destroy = Module["_IXA_INCHIBUILDER_Destroy"] = createExportWrapper("IXA_INCHIBUILDER_Destroy");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_SetMolecule = Module["_IXA_INCHIBUILDER_SetMolecule"] = createExportWrapper("IXA_INCHIBUILDER_SetMolecule");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetNumAtoms = Module["_IXA_MOL_GetNumAtoms"] = createExportWrapper("IXA_MOL_GetNumAtoms");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_HasError = Module["_IXA_STATUS_HasError"] = createExportWrapper("IXA_STATUS_HasError");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomId = Module["_IXA_MOL_GetAtomId"] = createExportWrapper("IXA_MOL_GetAtomId");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomElement = Module["_IXA_MOL_GetAtomElement"] = createExportWrapper("IXA_MOL_GetAtomElement");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomX = Module["_IXA_MOL_GetAtomX"] = createExportWrapper("IXA_MOL_GetAtomX");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomY = Module["_IXA_MOL_GetAtomY"] = createExportWrapper("IXA_MOL_GetAtomY");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomZ = Module["_IXA_MOL_GetAtomZ"] = createExportWrapper("IXA_MOL_GetAtomZ");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomMass = Module["_IXA_MOL_GetAtomMass"] = createExportWrapper("IXA_MOL_GetAtomMass");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomCharge = Module["_IXA_MOL_GetAtomCharge"] = createExportWrapper("IXA_MOL_GetAtomCharge");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomRadical = Module["_IXA_MOL_GetAtomRadical"] = createExportWrapper("IXA_MOL_GetAtomRadical");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomHydrogens = Module["_IXA_MOL_GetAtomHydrogens"] = createExportWrapper("IXA_MOL_GetAtomHydrogens");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomNumBonds = Module["_IXA_MOL_GetAtomNumBonds"] = createExportWrapper("IXA_MOL_GetAtomNumBonds");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomBond = Module["_IXA_MOL_GetAtomBond"] = createExportWrapper("IXA_MOL_GetAtomBond");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondType = Module["_IXA_MOL_GetBondType"] = createExportWrapper("IXA_MOL_GetBondType");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondAtom1 = Module["_IXA_MOL_GetBondAtom1"] = createExportWrapper("IXA_MOL_GetBondAtom1");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondAtom2 = Module["_IXA_MOL_GetBondAtom2"] = createExportWrapper("IXA_MOL_GetBondAtom2");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomIndex = Module["_IXA_MOL_GetAtomIndex"] = createExportWrapper("IXA_MOL_GetAtomIndex");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondWedge = Module["_IXA_MOL_GetBondWedge"] = createExportWrapper("IXA_MOL_GetBondWedge");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetDblBondConfig = Module["_IXA_MOL_GetDblBondConfig"] = createExportWrapper("IXA_MOL_GetDblBondConfig");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetNumStereos = Module["_IXA_MOL_GetNumStereos"] = createExportWrapper("IXA_MOL_GetNumStereos");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoId = Module["_IXA_MOL_GetStereoId"] = createExportWrapper("IXA_MOL_GetStereoId");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoTopology = Module["_IXA_MOL_GetStereoTopology"] = createExportWrapper("IXA_MOL_GetStereoTopology");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoCentralAtom = Module["_IXA_MOL_GetStereoCentralAtom"] = createExportWrapper("IXA_MOL_GetStereoCentralAtom");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoParity = Module["_IXA_MOL_GetStereoParity"] = createExportWrapper("IXA_MOL_GetStereoParity");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoCentralBond = Module["_IXA_MOL_GetStereoCentralBond"] = createExportWrapper("IXA_MOL_GetStereoCentralBond");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoVertex = Module["_IXA_MOL_GetStereoVertex"] = createExportWrapper("IXA_MOL_GetStereoVertex");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetChiral = Module["_IXA_MOL_GetChiral"] = createExportWrapper("IXA_MOL_GetChiral");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetCommonBond = Module["_IXA_MOL_GetCommonBond"] = createExportWrapper("IXA_MOL_GetCommonBond");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_SetOption_Stereo = Module["_IXA_INCHIBUILDER_SetOption_Stereo"] = createExportWrapper("IXA_INCHIBUILDER_SetOption_Stereo");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_SetOption_Timeout = Module["_IXA_INCHIBUILDER_SetOption_Timeout"] = createExportWrapper("IXA_INCHIBUILDER_SetOption_Timeout");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds = Module["_IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds"] = createExportWrapper("IXA_INCHIBUILDER_SetOption_Timeout_MilliSeconds");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_SetOption = Module["_IXA_INCHIBUILDER_SetOption"] = createExportWrapper("IXA_INCHIBUILDER_SetOption");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_CheckOption = Module["_IXA_INCHIBUILDER_CheckOption"] = createExportWrapper("IXA_INCHIBUILDER_CheckOption");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_CheckOption_Stereo = Module["_IXA_INCHIBUILDER_CheckOption_Stereo"] = createExportWrapper("IXA_INCHIBUILDER_CheckOption_Stereo");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_GetInChI = Module["_IXA_INCHIBUILDER_GetInChI"] = createExportWrapper("IXA_INCHIBUILDER_GetInChI");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_GetInChIEx = Module["_IXA_INCHIBUILDER_GetInChIEx"] = createExportWrapper("IXA_INCHIBUILDER_GetInChIEx");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_GetAuxInfo = Module["_IXA_INCHIBUILDER_GetAuxInfo"] = createExportWrapper("IXA_INCHIBUILDER_GetAuxInfo");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIBUILDER_GetLog = Module["_IXA_INCHIBUILDER_GetLog"] = createExportWrapper("IXA_INCHIBUILDER_GetLog");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIKEYBUILDER_Create = Module["_IXA_INCHIKEYBUILDER_Create"] = createExportWrapper("IXA_INCHIKEYBUILDER_Create");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIKEYBUILDER_Destroy = Module["_IXA_INCHIKEYBUILDER_Destroy"] = createExportWrapper("IXA_INCHIKEYBUILDER_Destroy");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIKEYBUILDER_SetInChI = Module["_IXA_INCHIKEYBUILDER_SetInChI"] = createExportWrapper("IXA_INCHIKEYBUILDER_SetInChI");
+
+/** @type {function(...*):?} */
+var _IXA_INCHIKEYBUILDER_GetInChIKey = Module["_IXA_INCHIKEYBUILDER_GetInChIKey"] = createExportWrapper("IXA_INCHIKEYBUILDER_GetInChIKey");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_Create = Module["_IXA_MOL_Create"] = createExportWrapper("IXA_MOL_Create");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_Destroy = Module["_IXA_MOL_Destroy"] = createExportWrapper("IXA_MOL_Destroy");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_Clear = Module["_IXA_MOL_Clear"] = createExportWrapper("IXA_MOL_Clear");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetChiral = Module["_IXA_MOL_SetChiral"] = createExportWrapper("IXA_MOL_SetChiral");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_CreateAtom = Module["_IXA_MOL_CreateAtom"] = createExportWrapper("IXA_MOL_CreateAtom");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomX = Module["_IXA_MOL_SetAtomX"] = createExportWrapper("IXA_MOL_SetAtomX");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomY = Module["_IXA_MOL_SetAtomY"] = createExportWrapper("IXA_MOL_SetAtomY");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomZ = Module["_IXA_MOL_SetAtomZ"] = createExportWrapper("IXA_MOL_SetAtomZ");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomElement = Module["_IXA_MOL_SetAtomElement"] = createExportWrapper("IXA_MOL_SetAtomElement");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomAtomicNumber = Module["_IXA_MOL_SetAtomAtomicNumber"] = createExportWrapper("IXA_MOL_SetAtomAtomicNumber");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetAtomAtomicNumber = Module["_IXA_MOL_GetAtomAtomicNumber"] = createExportWrapper("IXA_MOL_GetAtomAtomicNumber");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomHydrogens = Module["_IXA_MOL_SetAtomHydrogens"] = createExportWrapper("IXA_MOL_SetAtomHydrogens");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomMass = Module["_IXA_MOL_SetAtomMass"] = createExportWrapper("IXA_MOL_SetAtomMass");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomRadical = Module["_IXA_MOL_SetAtomRadical"] = createExportWrapper("IXA_MOL_SetAtomRadical");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetAtomCharge = Module["_IXA_MOL_SetAtomCharge"] = createExportWrapper("IXA_MOL_SetAtomCharge");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_ReserveSpace = Module["_IXA_MOL_ReserveSpace"] = createExportWrapper("IXA_MOL_ReserveSpace");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_CreateBond = Module["_IXA_MOL_CreateBond"] = createExportWrapper("IXA_MOL_CreateBond");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetNumBonds = Module["_IXA_MOL_GetNumBonds"] = createExportWrapper("IXA_MOL_GetNumBonds");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondId = Module["_IXA_MOL_GetBondId"] = createExportWrapper("IXA_MOL_GetBondId");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondIndex = Module["_IXA_MOL_GetBondIndex"] = createExportWrapper("IXA_MOL_GetBondIndex");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetBondOtherAtom = Module["_IXA_MOL_GetBondOtherAtom"] = createExportWrapper("IXA_MOL_GetBondOtherAtom");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetBondType = Module["_IXA_MOL_SetBondType"] = createExportWrapper("IXA_MOL_SetBondType");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetBondWedge = Module["_IXA_MOL_SetBondWedge"] = createExportWrapper("IXA_MOL_SetBondWedge");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetDblBondConfig = Module["_IXA_MOL_SetDblBondConfig"] = createExportWrapper("IXA_MOL_SetDblBondConfig");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_CreateStereoTetrahedron = Module["_IXA_MOL_CreateStereoTetrahedron"] = createExportWrapper("IXA_MOL_CreateStereoTetrahedron");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_CreateStereoRectangle = Module["_IXA_MOL_CreateStereoRectangle"] = createExportWrapper("IXA_MOL_CreateStereoRectangle");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_CreateStereoAntiRectangle = Module["_IXA_MOL_CreateStereoAntiRectangle"] = createExportWrapper("IXA_MOL_CreateStereoAntiRectangle");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoIndex = Module["_IXA_MOL_GetStereoIndex"] = createExportWrapper("IXA_MOL_GetStereoIndex");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_GetStereoNumVertices = Module["_IXA_MOL_GetStereoNumVertices"] = createExportWrapper("IXA_MOL_GetStereoNumVertices");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_SetStereoParity = Module["_IXA_MOL_SetStereoParity"] = createExportWrapper("IXA_MOL_SetStereoParity");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_ReadInChI = Module["_IXA_MOL_ReadInChI"] = createExportWrapper("IXA_MOL_ReadInChI");
+
+/** @type {function(...*):?} */
+var _IXA_MOL_ReadMolfile = Module["_IXA_MOL_ReadMolfile"] = createExportWrapper("IXA_MOL_ReadMolfile");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_Create = Module["_IXA_STATUS_Create"] = createExportWrapper("IXA_STATUS_Create");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_Destroy = Module["_IXA_STATUS_Destroy"] = createExportWrapper("IXA_STATUS_Destroy");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_Clear = Module["_IXA_STATUS_Clear"] = createExportWrapper("IXA_STATUS_Clear");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_HasWarning = Module["_IXA_STATUS_HasWarning"] = createExportWrapper("IXA_STATUS_HasWarning");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_GetCount = Module["_IXA_STATUS_GetCount"] = createExportWrapper("IXA_STATUS_GetCount");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_GetMessage = Module["_IXA_STATUS_GetMessage"] = createExportWrapper("IXA_STATUS_GetMessage");
+
+/** @type {function(...*):?} */
+var _IXA_STATUS_GetSeverity = Module["_IXA_STATUS_GetSeverity"] = createExportWrapper("IXA_STATUS_GetSeverity");
+
+/** @type {function(...*):?} */
 var _inchi_from_molfile = Module["_inchi_from_molfile"] = createExportWrapper("inchi_from_molfile");
 
 /** @type {function(...*):?} */
@@ -4396,6 +5365,18 @@ var _molfile_from_auxinfo = Module["_molfile_from_auxinfo"] = createExportWrappe
 
 /** @type {function(...*):?} */
 var _model_from_inchi = Module["_model_from_inchi"] = createExportWrapper("model_from_inchi");
+
+/** @type {function(...*):?} */
+var _jna_createMol = Module["_jna_createMol"] = createExportWrapper("jna_createMol");
+
+/** @type {function(...*):?} */
+var _jna_createMolTest = Module["_jna_createMolTest"] = createExportWrapper("jna_createMolTest");
+
+/** @type {function(...*):?} */
+var _jna_getMolAtomX = Module["_jna_getMolAtomX"] = createExportWrapper("jna_getMolAtomX");
+
+/** @type {function(...*):?} */
+var _jna_createMolTest2 = Module["_jna_createMolTest2"] = createExportWrapper("jna_createMolTest2");
 
 /** @type {function(...*):?} */
 var ___stdio_exit = Module["___stdio_exit"] = createExportWrapper("__stdio_exit");
