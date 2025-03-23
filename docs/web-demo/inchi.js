@@ -70,7 +70,7 @@ async function readMolfile(molfile, options, inchiVersion) {
 	//async function readCDXFile(cdxBytes, options) {
 	//	  try {
 	//		  //todo
-	//		  // var inchi = swingJS.OCL.getInchiFromOCLMolecule(ocl.readCDX(cdxBytes), options)
+	//		  // var inchi = swingJS.OCL.getInChIFromOCLMolecule(ocl.readCDX(cdxBytes), options)
 	//		  // more here.
 	//	  } catch (e) {
 	//		  throw e;
@@ -95,7 +95,7 @@ async function readAuxinfo(auxinfo, bDoNotAddH, bDiffUnkUndfStereo, inchiVersion
 	  }
 	}
 
-async function inchikeyFromInchi(inchi, inchiVersion) {
+async function inchikeyFromInChI(inchi, inchiVersion) {
 	// todo inchikeybuilder
   const module = await availableInchiVersions[inchiVersion].module;
   const ptr = module.ccall("inchikey_from_inchi", "number", ["string"], [inchi]);

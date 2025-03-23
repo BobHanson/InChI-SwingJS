@@ -5,12 +5,12 @@
   <body>
     <div class="container-md" style="margin-bottom: 2rem;width:800px">
     <H3>JNA-InChI/WASM Chemical Development Kit (CDK) SwingJS Web Demo</H3>
-    <span>If you are looking for the IUPAC InChI Web Demo, it is <a href='https://iupac-inchi.github.io/InChI-Web-Demo/'>here</a>. This page is a slimmed-down adaptation of that page that demonstrates how 
+    <span style="font-size:11pt">If you are looking for the IUPAC InChI Web Demo, it is <a href='https://iupac-inchi.github.io/InChI-Web-Demo/'>here</a>. This page is a slimmed-down adaptation of that page that demonstrates how 
 <a target=_blank href='https://github.com/BobHanson/cdk-SwingJS'>CDK-SwingJS</a> 
 and <a target=_blank href='https://github.com/BobHanson/jna-inchi-SwingJS'>JNA-InChI-SwingJS</a> 
-can be used in JavaScript to good effect. 
+can be used in JavaScript to good effect. For more information, see my <a target=_blank href="https://github.com/IUPAC-InChI/InChI/pull/106#issue-2929520160">Pull Request</a>. 
 <p>
-In this case, we generate stereochemically correct models and a PNG images from InChI, AuxInfo, or MOL file input. (You can drop a MOL file into the box, for example.) The page uses the Chemistry Development Kit to convert between InChI and MOL and back. We also use the CDK to depict the internal InChI description of an amide (HN-C=O) as an iminol (N=C-OH) back to what a chemist would expect -- the amide form. This is a relatively simple to implement option we have added to JNA-InChI. 
+In this case, we generate stereochemically correct 2D models and PNG images from InChI, AuxInfo, or MOL file input. (You can drop a MOL file into the box, for example.) The page uses the Chemistry Development Kit to convert between InChI and MOL and back. We also use the CDK to depict the internal InChI description of an amide (HN-C=O) as an iminol (N=C-OH) back to what a chemist would expect -- the amide form. This is a relatively simple to implement option we have added to JNA-InChI. 
 <p>
 The JavaScript on this page is communicating with compiled inchi C code. The interesting thing (I think!) is that
 the CDK is a massive <i>Java</i> application, and InChI code is written in C, and everything you see is happening in your browser, with no server-side action. So how is it that these programs can be operating on this page, in JavaScript?   
