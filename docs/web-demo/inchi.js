@@ -17,10 +17,10 @@ var jna = availableInchiVersions["1.07.2 (jnainchi)"] = {};
 	var Info = {
 	  code: null,
 	  main: "swingjs.CDK",
-	  core: "_swingjs-cdk",
+	  core: ["_swingjs-cdk", "_ocl"],
 		width: 850,
 		height: 550,
-	  readyFunction: function() {showVersion();},
+	  readyFunction: function() {showVersion();	startOCL()},
 		serverURL: 'https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php',
 		fallbackJ2SPath: 'https://chemapps.stolaf.edu/jmol/jsmol/j2s',
 		j2sPath: 'swingjs/j2s',
@@ -205,6 +205,19 @@ var addDnD = function() {
 	  reader.readAsText(file);
 	});	
 }; addDnD();
+
+function startOCL() {
+	Clazz.loadClass("swingjs.OCL");
+	swingjs.OCL.initInchi({
+		run$: function() {
+			swingjs.OCL.getFrame("testing", 400,400,-1, {
+				accept$O : function(drawing) {
+					alert(OCL.getInchiFromOCLMolecule(drawing.mMol));
+				}
+			});			
+		}
+	});
+}
 
 var newLook = function() {
 $("#inchi-tab3-inchiversion").parent().hide()

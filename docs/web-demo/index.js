@@ -138,3 +138,4 @@ async function extractContent(dataTransfer) {
   }
   return null;
 }
+

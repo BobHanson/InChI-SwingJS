@@ -14858,6 +14858,8 @@ Clazz.new_ = function(c, args, cl) {
   return obj;
 }
 
+Clazz._Pointer = null;
+
 Clazz._loadWasm = function(cls, lib){
 	if (cls.wasmLoaded)
 		return;
@@ -14994,6 +14996,9 @@ Clazz._loadWasm = function(cls, lib){
 			var retType = "number"; 
 			switch (jsm.nativeReturn) {
 			case "com.sun.jna.Pointer":
+				if (!Clazz._Pointer) {
+					Clazz._Pointer = Clazz.load("com.sun.jna.Pointer");
+				}
 				fret = retPtr; 
 				break;
 			case "[B": // It is assumed these are strings
