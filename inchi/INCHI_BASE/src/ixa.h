@@ -261,7 +261,9 @@ extern "C" {
 
     EXPIMP_TEMPLATE INCHI_API const char* INCHI_DECL IXA_STATUS_GetMessage( IXA_STATUS_HANDLE hStatus,
                                                                            int               vIndex );
-    
+
+
+
 
     /****************************************************************************/
     /*       Functions to Create, Clear and Destroy Molecule Objects            */
@@ -287,11 +289,11 @@ extern "C" {
                                                                  IXA_MOL_HANDLE    hMolecule,
                                                                  const char*       pInChI );
 
-    EXPIMP_TEMPLATE INCHI_API char* INCHI_DECL IXA_MOL_ReadAuxInfo( IXA_STATUS_HANDLE hStatus,
+    EXPIMP_TEMPLATE INCHI_API void INCHI_DECL IXA_MOL_ReadAuxInfo(IXA_STATUS_HANDLE hStatus,
                                                                     IXA_MOL_HANDLE    hMolecule,
-                                                                    const char*       pAuxInfo,
+                                                                    char* pAuxInfo,
                                                                     int               bDoNotAddH,
-                                                                    int               bDiffUnkUndfStereo );
+                                                                    int               bDiffUnkUndfStereo);
 
     EXPIMP_TEMPLATE INCHI_API void INCHI_DECL IXA_MOL_SetChiral( IXA_STATUS_HANDLE hStatus,
                                                                  IXA_MOL_HANDLE    hMolecule,
@@ -299,7 +301,6 @@ extern "C" {
 
     EXPIMP_TEMPLATE INCHI_API IXA_BOOL INCHI_DECL IXA_MOL_GetChiral( IXA_STATUS_HANDLE hStatus,
                                                                      IXA_MOL_HANDLE    hMolecule );
-
 
 
     /****************************************************************************/
@@ -604,13 +605,13 @@ extern "C" {
     /****************************************************************************/
     /*                    Functions for Generating InChIs                       */
 
-    EXPIMP_TEMPLATE INCHI_API const char* INCHI_DECL IXA_INCHIBUILDER_GetInChIVersion( IXA_BOOL vFullDescription );
-
     EXPIMP_TEMPLATE INCHI_API IXA_INCHIBUILDER_HANDLE INCHI_DECL IXA_INCHIBUILDER_Create( IXA_STATUS_HANDLE hStatus );
 
     EXPIMP_TEMPLATE INCHI_API void INCHI_DECL IXA_INCHIBUILDER_SetMolecule( IXA_STATUS_HANDLE       hStatus,
                                                                            IXA_INCHIBUILDER_HANDLE hInChIBuilder,
                                                                            IXA_MOL_HANDLE          hMolecule );
+
+    EXPIMP_TEMPLATE INCHI_API const char* INCHI_DECL IXA_INCHIBUILDER_GetInChIVersion(IXA_BOOL vFullDescription);
 
     EXPIMP_TEMPLATE INCHI_API const char* INCHI_DECL IXA_INCHIBUILDER_GetInChI( IXA_STATUS_HANDLE       hStatus,
                                                                                IXA_INCHIBUILDER_HANDLE hInChIBuilder );
@@ -626,7 +627,6 @@ extern "C" {
 
     EXPIMP_TEMPLATE INCHI_API void INCHI_DECL IXA_INCHIBUILDER_Destroy( IXA_STATUS_HANDLE       hStatus,
                                                                        IXA_INCHIBUILDER_HANDLE hInChIBuilder );
-
 
 
     /****************************************************************************/
