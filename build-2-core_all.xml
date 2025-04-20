@@ -1,0 +1,67 @@
+<project name="Inchi-SwingJS" default="toJs" basedir=".">
+ 
+    <property name="html.dir" value="site-html-assets" />   
+
+    <property name="site.dir" value="site" />
+    <property name="swingjs.path" value="${site.dir}/swingjs" />
+    <property name="j2s.path" value="${swingjs.path}/j2s" />
+
+   <target name="toJs" id="toJs">
+  			
+   	<!-- make core files -->
+
+   	<echo>creating and compressing core files - warnings are OK; "does not exist" is trouble</echo>
+   	<echo>reading core class list from file coreclasses</echo>   	
+   	<loadresource property="coreclasses">
+       <file file="j2sclasslist.txt"/>
+    </loadresource>
+ 
+    <antcall target="call-core">
+        <param name="call-core.name" value="_jna-cdk-ocl" />
+        <param name="call-core.list" value="
+         	${coreclasses}
+        	" />
+    </antcall>
+
+    <echo> Copying ${j2s.path}/core_jna-cdk-ocl.z.js into ${html.dir}/assets </echo>
+    <copy todir="${html.dir}/assets" failonerror="true">
+      <fileset dir="${j2s.path}/core">
+        <include name="core_jna-cdk-ocl.z.js"/>
+      </fileset>
+    </copy>
+    <echo>creating ${html.dir}/assets/coreAssets.zip </echo>
+    <zip destfile="${html.dir}/assets/coreAssets.zip" basedir="site/swingjs/j2s" includesfile="j2sassets.txt" ></zip>
+
+    <echo> Copying ${html.dir}/assets/coreAssets.zip into ${site.dir} </echo>
+    <copy failonerror="false" todir="${site.dir}">
+      <fileset dir="${html.dir}">
+        <include name="**"/>
+    </fileset>
+    </copy>
+
+  </target>
+
+
+	  <target name="call-core" id="call-core">
+	   	<echo>......Creating core${call-core.name}.js</echo>
+	   	<concat destfile="${swingjs.path}/js/core/tmp.js">
+	   		<filelist dir="${swingjs.path}/j2s" files="${call-core.list}" />
+	   	</concat> 
+
+	  	<replace dir="${swingjs.path}/js/core" includes="tmp.js" token="Clazz." value="Clazz_"/>
+	  	<replace dir="${swingjs.path}/js/core" includes="tmp.js" token="Clazz__" value="Clazz._"/>
+	   	<echo>......Generating ${swingjs.path}/j2s/core/core${call-core.name}.js</echo> 	
+	   	<concat destfile="${swingjs.path}/j2s/core/core${call-core.name}.js"><filelist dir="${swingjs.path}/js" files="
+	   		core/coretop2.js
+	   		core/tmp.js
+	   		core/corebottom2.js
+	   		" />
+	   	</concat>
+	   	<echo>......Generating ${swingjs.path}/j2s/core/core${call-core.name}.z.js</echo> 	
+	   	<java jar="tools/closure_compiler.jar" fork="true" dir="${swingjs.path}/j2s/core" failonerror="false">
+	   		<arg line="--js core${call-core.name}.js --js_output_file core${call-core.name}.z.js" />
+	    </java>
+	 	<delete quiet="true" file="${swingjs.path}/js/core/tmp.js" />
+	  </target>
+	
+</project>

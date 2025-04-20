@@ -1,0 +1,7 @@
+images/editorButtons.png
+images/esrButtons.png
+org/openscience/cdk/layout/custom-templates.smi
+org/openscience/cdk/layout/chebi-ring-templates.smi
+org/openscience/cdk/layout/macro.smi
+uk/ac/ebi/beam/element-defaults.txt
+org/openscience/cdk/graph/invariant/primes.dat

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JNA-InChI/WASM CDK+OCL-SwingJS Demo</title>
+    <meta charset="utf-8">
+	<script src="jnainchi.js"></script>
+    <script src="swingjs/swingjs2.js"></script>
+  </head>
+  <body>
+    <div id=top style="width:700px">
+	    <span>
+			To try it out, enter an InChI such as that for <a href="javascript:updateInchiTextBox('morphine')">morphine</a>
+			or <a href="javascript:updateInchiTextBox('(+)-morphine')">its enantiomer</a>
+			or this <a href="javascript:updateInchiTextBox('taxol')">taxol MOL file (with amide fixing)</a>
+			or this <a href="javascript:updateInchiTextBox('auxinfo')">AuxInfo</a> or provide a <a href=javascript:getSMILES()>SMILES</a>.
+			Go ahead and reverse the sign of one or more of the stereochemical indicators such as "13-" to "13+". Fun, huh?
+			And, of course, you can drop your own MOL, CDX, or CDXML file into the OCL editor, or just modify the structure that is there. 
+			It should immediately update both the InChI and the CDK images.
+		</span>
+		Many thanks to John Mayfield, Daniel Lowe, Jonathan Goodman, and others for assisting us in getting all these
+		pieces working together. Interns Josh Charlton and Swagat Malla assisted in this project. Questions? Talk to me. <a href=mailto:hansonr@stolaf.edu>Bob Hanson</a>.
+	    <br>
+    </div>
+    <div id=options><b>Options</b> 
+        &nbsp;&nbsp;&nbsp;&nbsp;input: <input id=optfixedh type=checkbox><label for=optfixedh>FixedH</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;output: <input id=optfixamide type=checkbox checked><label for=optfixamide>fixamide</label>
+        <input id=optfixacid type=checkbox checked><label for=optfixacid>fixacid</label> 
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:updateInchiTextBox('fixtest')">test case</a>
+    </div>
+    <div id=inchi><textarea id=txtinchi style="width:600px;height:100px" placeholder="Paste an InChI, AuxInfo, or MOL file here, or drop a MOL file into this box. You can also drop a MOL, CDX, or CDXML file into the OCL app"></textarea>
+    <br><input id=optatomnumbers type=checkbox><label for=optatomnumbers>atom numbers</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:doShowModelJSON()">JSON model</a>
+    </div>
+    <div id=txtlog style="width:900px;height:20px;color:red"></div>
+    <div id=images>
+      <table><tr>
+        <td valign=top><span id=molimagediv><b><span id=mollabel></span><br><img id=molimage width=75% height=75%></img></span></td>
+        <td valign=top><b><span id=cdklabel></span></b>
+           <br><img id=cdkimage></img></td>
+       </tr></table>
+    </div>
+    <script src="inchi.js"></script>
+  </body>
+</html>

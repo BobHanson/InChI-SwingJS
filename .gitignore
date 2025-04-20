@@ -1,11 +1,6 @@
-/bin/
+site
+site1
+bin
 **/*.o
-**/*.tmp
-**/demos/**/*
-**/debug/**/*
-**/tbb/**/*
-/target/
-/ketcher/react-app/node_modules
-/ketcher/react-app/build
-/ketcher/package.json
+inchi/.vs
 
