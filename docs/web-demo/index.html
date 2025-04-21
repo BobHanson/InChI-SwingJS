@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <title>JNA-InChI/WASM CDK+OCL-SwingJS Demo</title>
   </head>
+  <body>
+  
     <div class="container-md" style="margin-bottom: 2rem;width:800px">
-    <H3>JNA-InChI/WASM Chemical Development Kit (CDK) SwingJS Web Demo</H3>
-    <span style="font-size:11pt">If you are looking for the IUPAC InChI Web Demo, it is <a href='https://iupac-inchi.github.io/InChI-Web-Demo/'>here</a>. This page is a slimmed-down adaptation of that page that demonstrates how 
-<a target=_blank href='https://github.com/BobHanson/cdk-SwingJS'>CDK-SwingJS</a> 
+    <H3>JNA-InChI/WASM CDK+OCL SwingJS Demo</H3>
+    <span style="font-size:11pt">If you are looking for the IUPAC InChI Web Demo, it is <a href='https://iupac-inchi.github.io/InChI-Web-Demo/'>here</a>. 
+    This page is a completely different idea. It demonstrates how 
+<a target=_blank href='https://github.com/BobHanson/cdk-SwingJS'>CDK-SwingJS</a>,  
+<a target=_blank href='https://github.com/BobHanson/OCL-SwingJS'>OCL-SwingJS</a> 
 and <a target=_blank href='https://github.com/BobHanson/jna-inchi-SwingJS'>JNA-InChI-SwingJS</a> 
-can be used in JavaScript to good effect. For more information, see my <a target=_blank href="https://github.com/IUPAC-InChI/InChI/pull/106#issue-2929520160">Pull Request</a>. 
+can be used together in JavaScript to good effect, harmonizing access to the InChI C code in both 
+Java and JavaScript. For more information, see my <a target=_blank href="https://github.com/IUPAC-InChI/InChI/pull/106#issue-2929520160">Pull Request</a>. 
 <p>
-In this case, we generate stereochemically correct 2D models and PNG images from InChI, AuxInfo, or MOL file input. (You can drop a MOL file into the box, for example.) The page uses the Chemistry Development Kit to convert between InChI and MOL and back. We also use the CDK to depict the internal InChI description of an amide (HN-C=O) as an iminol (N=C-OH) back to what a chemist would expect -- the amide form. This is a relatively simple to implement option we have added to JNA-InChI. 
+Note all the code handling InChI strings and molecules was written in Java. 
+(In fact, it was all developed and tested first in Java before implementing it here in JavaScript.) 
+The only thing JavaScript was written for 
+ here was for laying out the page and accessing the C functions of the inchi code and the 
+ Java methods of OCL and the CDK. All the code that generates stereochemically correct 2D models and PNG images from InChI, AuxInfo, or MOL file input, and 
+ allows the user to draw a compound or drop a MOL, CDX, or CDXML file into the drawing area, was written in Java. 
+ Essentially none of the code written for these pages was written for Java-only or JavaScript-only application.
+ <p>
+This page demonstrates how Java "native C" calls can be automatically converted to JavaScript 
+calls to WebAssembly ("WASM"). Java uses these native calls to communicate 
+with architecture-specific C code via a Java Native Access (JNA) interface. What we have 
+done is to harmonize the WASM and JNA calls so that Java and JavaScript can both make identical calls 
+to the InChI Extended Application Programming Interface (aka InChI Extended API or just IXA).
+So this is a bit of a hybrid application now. We use C and Java to create all of the functionality. 
+The Java is transpiled to JavaScript by the java2script Eclipse plugin; The C code is compiled into
+WebAssembly by the Emscripten emcc compiler. Everything written in Java is actually running in 
+JavaScript within your browser.  
 <p>
-The JavaScript on this page is communicating with compiled inchi C code. The interesting thing (I think!) is that
-the CDK is a massive <i>Java</i> application, and InChI code is written in C, and everything you see is happening in your browser, with no server-side action. So how is it that these programs can be operating on this page, in JavaScript?   
-<p>
-The key is that we have found a way (as of March 2025) to implement Java "native C" calls 
-as JavaScript calls to WebAssembly ("WASM"). Java uses these native calls to communicate with architecture-specific C code via a Java Native Access (JNA) interface. What we have done is to harmonize the WASM and JNA calls so that Java and JavaScript can make the same calls to the InChI Extended Application Programming Interface (aka InChI Extended API or just IXA).
-So this is a bit of a hybrid application now. We use JavaScript not only to create a user interface, but also to do all the computation. 
-<p>
-The CDK is primarily used for creating structure diagrams in PNG format and as a convenient portal to the InChI Extended API. <b>I believe this is the first implementation of the CDK in JavaScript.</b> From this page we are just calling a couple of "Java" methods transpiled into JavaScript. The JavaScript in <a target=_blank href=inchi.js>inchi.js</a> can call the InChI code "directly" through the JNA/WASM interface or call the CDK to hide some of the details. You can see the CDK code that is being run <a target=_blank href="https://github.com/BobHanson/cdk-SwingJS/blob/main/src2/swingjs/src/main/java/swingjs/CDK.java">here</a>. This code works in Java and JavaScript, producing identical results. (When it is transpiled into JavaScript, which is what we are using on this page, it looks like <a target=_blank href="swingsj/j2s/swingjs/CDK.js">this</a>. 
+This page is the first web page that uses both OCL and the CDK as collaborative components. 
+It is the first implementation of the CDK in JavaScript, and the first page to 
+implement OCL in JavaScript without using additional specialized code such as the Google Web Toolkit. 
+This is also the first program that demonstrates how OCL and the CDK can communcate with each other 
+directly, using the JNA-InChI interface not for creating InChI, but instead for a common molecular structure 
+interface. In Java or in JavaScript. OCL is used as a method of generating the InchiInput structures needed by 
+InChI C. The CDK is primarily used for creating structure diagrams in PNG format from InChI. In both Java and 
+JavaScript, both OCL and the CDK 
+interact with the InChI Extended API via the same Java/WASM interface, <a target=_blank href=https://github.com/BobHanson/jna-inchi-SwingJS/blob/7d296ee9137e488782f261be24678cb44b6774a9/jna-inchi-api/src/main/java/io/github/dan2097/jnainchi/inchi/InchiLibrary.java>InchiLibrary.java</a>.
 <p>
 <center><a href=index1.htm>continue</a></center>
 

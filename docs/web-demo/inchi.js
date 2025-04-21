@@ -1,151 +1,265 @@
 "use strict";
 
+// debugging only;
+// set this false to use local non-core set of files and also not any files from St. Olaf
+var debugging = false;
+var isLocal = debugging || J2S._isFile && J2S._debugCode; 
+var useCore = !debugging && !J2S._debugCode;
+
+function writeResult(text) {
+	$("#txtlog").html(text);
+}
+
 /*
  * WASM module(s) initialization
- *f	
+ *
  * Calling the factory function returns a Promise which resolves to the module object.
  * See https://github.com/emscripten-core/emscripten/blob/fa339b76424ca9fbe5cf15faea0295d2ac8d58cc/src/settings.js#L1183
  */
 if (!self.SwingJS)alert('swingjs2.js was not found. It needs to be in swingjs folder in the same directory as ' + document.location.href)
+SwingJS.Inchi = {};
 
-const availableInchiVersions = {};
-
-var jna = availableInchiVersions["1.07.2 (jnainchi)"] = {};
+var jna = {};
 
 (jna.module = jnainchiModule()).then(function(module) {
 	J2S["jnainchi_module"] = module;
 	var Info = {
 	  code: null,
 	  main: "swingjs.CDK",
-	  core: ["_swingjs-cdk", "_ocl"],
-		width: 850,
+	  core: (useCore ? "assets/core_jna-cdk-ocl.z.js" : "none"),
+	  coreAssets: "assets/coreAssets.zip",
+	  width: 850,
 		height: 550,
-	  readyFunction: function() {showVersion();	startOCL()},
+	  readyFunction: function() {appletReady();},
 		serverURL: 'https://chemapps.stolaf.edu/jmol/jsmol/php/jsmol.php',
-		fallbackJ2SPath: 'https://chemapps.stolaf.edu/jmol/jsmol/j2s',
-		j2sPath: 'swingjs/j2s',
+		j2sPath: (isLocal ? 'swingjs/j2s' : 'https://chemapps.stolaf.edu/swingjs/chem/swingjs/j2s'),
 		console:'sysoutdiv',
 		allowjavascript: true
 	}
 	SwingJS.getApplet('demoApplet', Info);
 });
 
-async function readInchi(inchi, moreOptions) {
+
+var appletReady = function() {
+	showVersion();	startOCL()	
+	$("#optfixedh").change(function(){setTimeout(function() {
+		onOCLChanged(null)}, 10)});
+	$("#optfixamide").change(function(){setTimeout(function() {
+		//updateInchi(false)
+		onOCLChanged(null)}, 10)});
+	$("#optfixacid").change(function(){setTimeout(function() {
+		//updateInchi(false)
+		onOCLChanged(null)}, 10)});
+	$("#optatomnumbers").change(function(){setTimeout(function() {
+		updateAtomNumbers(false)}, 10)});
+	
+	var inchi = getField("InChI");
+	if (inchi) {
+		updateTextArea("InChI=" + inchi, true, false);
+	} else {
+		var smiles = getField("SMILES");
+		if (smiles)
+			setSmiles(smiles);
+	}
+}
+
+var getField = function(key) {
+	key = "&" + key + "=";
+	var f = "&" + (document.location.search + key).substring(1);
+	return f.split(key)[1].split("&")[0];
+}
+
+async function updateInchi(fromOCLChange) {
+  const input = $("#txtinchi").val();
+  writeResult("");
+  if (!input || input.startsWith("InChI=")) {
+    try {
+      await readInchi(input.trim(), getOutputOptions(), !fromOCLChange);
+    } catch(e) {
+      writeResult(`Caught exception from readInchi(): ${e}`);
+      console.error(e);
+    }
+  } else if (input.startsWith("AuxInfo=")) {
+    try {
+      await readAuxinfo(input.trim(), 0, 0);
+    } catch(e) {
+      writeResult(`Caught exception from readAuxinfo(): ${e}`);
+      console.error(e);
+    }
+  } else if (input.startsWith("SMILES=")) {
+	  setSmiles(input.substring(7))
+  } else if (input.length > 100) {
+	  if (input.trim().indexOf("\n") < 0) {
+		  // assume SMILES
+		  return setSmiles(input);
+	  }
+	  // assume MOL file
+	  try {
+	    await readMolfile(input, getOutputOptions());
+	  } catch(e) {
+	    writeResult(`Caught exception from readMolfile(): ${e}`);
+	    console.error(e);
+	  }
+  }
+}
+
+var getInputOptions = function() {
+	return ($("#optfixedh:checked").val()? "fixedh" : "");	
+}
+
+var getOutputOptions = function() {
+	return (($("#optfixamide:checked").val()? " fixamide" : "")
+	+ ($("#optfixacid:checked").val()? " fixacid" : "")).trim();	
+}
+
+var readFromOCL = false;
+
+var lastSmiles = "CN(CC[C@]12c3c(C4)ccc(O)c3O[C@H]11)[C@H]4[C@@H]2C=C[C@@H]1O";
+
+async function getSMILES() {
+	var smiles = prompt("Enter a SMILES, such as 'CCC=O'", lastSmiles);
+	smiles = smiles.trim();
+	if (smiles) {
+		lastSmiles = smiles;
+		setSmiles(smiles);
+	}	
+}
+
+var setSmiles = function(smiles) {
+	setTimeout(function() {updateTextArea(swingjs.OCL.get2DMolFromSmiles(smiles.trim()), true, false);}, 100);
+}
+
+async function readInchi(inchi, outputOptions, fromTextChange, fromMolfile) {
 //  another way to do it
 //	  var mol = swingjs.CDK.getCDKMoleculeFromInChI(inchi);
 //	  var s = swingjs.CDK.get2DMolFromCDKMolecule(mol);
 //	  console.log(s);
-//	  showStructureImage(mol, false);
-	  try {
-		  var ixa = J2S.wasm.jnainchi;
-		  var hStatus = ixa.IXA_STATUS_Create();
-		  var hMolecule =  ixa.IXA_MOL_Create(hStatus);
-		  ixa.IXA_MOL_ReadInChI(hStatus, hMolecule, inchi);
-		  processMoleculeHandle(hStatus, hMolecule, null, moreOptions, false);
-	  } catch (e) {
-		  throw e;
-	  } finally {
-		  ixa.IXA_STATUS_Destroy(hStatus);
-		  ixa.IXA_MOL_Destroy(null, hMolecule);		  
-	  }
-}
-
-async function readMolfile(molfile, options, inchiVersion) {
-	  try {
-		  var ixa = J2S.wasm.jnainchi;
-		  var hStatus = ixa.IXA_STATUS_Create();
-		  var hMolecule =  ixa.IXA_MOL_Create(hStatus);
-		  ixa.IXA_MOL_ReadMolfile(hStatus, hMolecule, molfile);
-		  var hBuilder = ixa.IXA_INCHIBUILDER_Create(hStatus);
-		  processMoleculeHandle(hStatus, hMolecule, hBuilder, null, true);
-	  } catch (e) {
-		  throw e;
-	  } finally {
-		  ixa.IXA_STATUS_Destroy(hStatus);
-		  ixa.IXA_MOL_Destroy(null, hMolecule);		  
-		  ixa.IXA_INCHIBUILDER_Destroy(null, hBuilder);		  
-	  }
-}
-
-	//async function readCDXFile(cdxBytes, options) {
-	//	  try {
-	//		  //todo
-	//		  // var inchi = swingJS.OCL.getInChIFromOCLMolecule(ocl.readCDX(cdxBytes), options)
-	//		  // more here.
-	//	  } catch (e) {
-	//		  throw e;
-	//	  }
-	//}
-
-async function readAuxinfo(auxinfo, bDoNotAddH, bDiffUnkUndfStereo, inchiVersion) {
+//	  showStructureImage(mol, false, true);
+  try {
 	  var ixa = J2S.wasm.jnainchi;
 	  var hStatus = ixa.IXA_STATUS_Create();
 	  var hMolecule =  ixa.IXA_MOL_Create(hStatus);
-	  try {
-		  //ixa.IXA_MOL_ReadAuxInfo(hStatus, hMolecule, auxinfo, bDoNotAddH, bDiffUnkUndfStereo);
-		  // temporary, until JNA-InChI also includes this method;
-		  // right now it is just in WASM
-		  // "peer" is the JNA field that is the actual memory address, as a number
-		  const module = await availableInchiVersions[inchiVersion].module;
-		  var inchi = module.ccall("IXA_MOL_ReadAuxInfo", "string", ["number", "number", "string", "number", "number"], [hStatus.peer, hMolecule.peer, auxinfo, bDoNotAddH, bDiffUnkUndfStereo]);
-		  processMoleculeHandle(hStatus, hMolecule, null, "", false);
-	  } finally {
-		  ixa.IXA_MOL_Destroy(null, hMolecule);
-		  ixa.IXA_STATUS_Destroy(hStatus);
-	  }
-	}
-
-async function inchikeyFromInChI(inchi, inchiVersion) {
-	// todo inchikeybuilder
-  const module = await availableInchiVersions[inchiVersion].module;
-  const ptr = module.ccall("inchikey_from_inchi", "number", ["string"], [inchi]);
-  const result = module.UTF8ToString(ptr);
-  module._free(ptr)
-
-  return JSON.parse(result);
+	  ixa.IXA_MOL_ReadInChI(hStatus, hMolecule, inchi);
+	  processMoleculeHandle(hStatus, hMolecule, outputOptions, false, fromTextChange, fromMolfile);
+  } catch (e) {
+	  throw e;
+  } finally {
+	  ixa.IXA_STATUS_Destroy(hStatus);
+	  ixa.IXA_MOL_Destroy(null, hMolecule);		  
+  }
 }
+
+async function readMolfile(molfile, options) {
+  try {
+	  var ixa = J2S.wasm.jnainchi;
+	  var hStatus = ixa.IXA_STATUS_Create();
+	  var hMolecule =  ixa.IXA_MOL_Create(hStatus);
+	  ixa.IXA_MOL_ReadMolfile(hStatus, hMolecule, molfile);
+	  processMoleculeHandle(hStatus, hMolecule, getOutputOptions(), true, true, true);
+  } catch (e) {
+	  throw e;
+  } finally {
+	  ixa.IXA_STATUS_Destroy(hStatus);
+	  ixa.IXA_MOL_Destroy(null, hMolecule);		  
+  }
+}
+
+async function readAuxinfo(auxinfo, bDoNotAddH, bDiffUnkUndfStereo) {
+  var ixa = J2S.wasm.jnainchi;
+  var hStatus = ixa.IXA_STATUS_Create();
+  var hMolecule =  ixa.IXA_MOL_Create(hStatus);
+  try {
+	  //ixa.IXA_MOL_ReadAuxInfo(hStatus, hMolecule, auxinfo, bDoNotAddH, bDiffUnkUndfStereo);
+	  // temporary, until JNA-InChI also includes this method;
+	  // right now it is just in WASM
+	  // "peer" is the JNA field that is the actual memory address, as a number
+	  const module = await jna.module;
+	  var inchi = module.ccall("IXA_MOL_ReadAuxInfo", "string", ["number", "number", "string", "number", "number"], [hStatus.peer, hMolecule.peer, auxinfo, bDoNotAddH, bDiffUnkUndfStereo]);
+	  processMoleculeHandle(hStatus, hMolecule, getOutputOptions(), false, true, false);
+  } finally {
+	  ixa.IXA_MOL_Destroy(null, hMolecule);
+	  ixa.IXA_STATUS_Destroy(hStatus);
+  }
+}
+
+var wasTextChange = false;
 
 /**
  * A general method that processes the IXA molecule to generate an InChI or CDK model
  */
-var processMoleculeHandle = function(hStatus, hMolecule, hBuilder, moreOptions, isMolfile) {
-  moreOptions = "fixamides";
-  if (hBuilder != null) {
+var processMoleculeHandle = function(hStatus, hMolecule, outputOptions, isMolfile, fromTextChange, fromMolfile) {
+  var CDK = swingjs.CDK;
+  var input = CDK.getInchiInputFromMoleculeHandle(hStatus, hMolecule, outputOptions);
+  if (isMolfile) {
 	  // mol file, so we want to also generate an InChI and produce its CDK model
 	  // we do this first, because it hides the MOL file structure from the previous call
-	  var ixa = J2S.wasm.jnainchi;
-	  ixa.IXA_INCHIBUILDER_SetMolecule(hStatus, hBuilder, hMolecule);
-	  var inchi = ixa.IXA_INCHIBUILDER_GetInChI(hStatus, hBuilder, hMolecule);
-	  updateTextArea(inchi, false);
-	  readInchi(inchi, moreOptions, null);
+	  var inchi = CDK.getInChIFromInchiInput(input, getInputOptions());
+	  updateTextArea(inchi, false, false);
+	  readInchi(inchi, outputOptions, true, true);
   }
-  var input = swingjs.CDK.getInchiInputFromMoleculeHandle(hStatus, hMolecule, moreOptions);
-  var mol = swingjs.CDK.getCDKMoleculeFromInchiInput(input);
-  showStructureImage(mol, isMolfile);
+  var mol = CDK.getCDKMoleculeFromInchiInput(input);
+  showStructureImage(mol, isMolfile, fromMolfile, true);
+  if (!isMolfile) {
+	 if (fromTextChange) {
+	   wasTextChange = true;
+	   showOCL(input, fromMolfile);
+     } else {
+	   wasTextChange = false;
+     } 
+  }
+
 }
 
 var timeoutID = 0;
 
-var ketcherdiv; // will be hidden, as Ketcher is not implemented here.
+var	cDModeSuppressChiralText = 0x0020;
+var	cDModeSuppressCIPParity  = 0x0040;
+var cDModeSuppressESR        = 0x0080;
+var cDModeBHNoSimpleHydrogens  = 0x100000;
+var cDModeNoImplicitCHydrogens = 0x200000;
+var cDModeAtomNoPlusOne        = 0x400000; // BH 2025.04.19
 
-var showStructureImage = function(mol, isMolFile) {
+var oclDefaultMode = cDModeSuppressChiralText 
+	| cDModeSuppressCIPParity 
+	| cDModeSuppressESR;
 
-	  if (isMolFile)
-		 mol = swingjs.CDK.suppressHydrogens(mol);
-	  var src = (mol.getAtomCount$() == 0 ? "" : swingjs.CDK.getDataURIFromCDKMolecule(mol));
-	  var divImg = $("#cdkimage")[0];
-	  if (!divImg) {		  
-		  ketcherdiv = $("#inchi-tab3-ketcher");
-		  ketcherdiv.after("<div id=cdkimagediv style='width:1000px;height:600px'><div id=version></div><span id=molimagediv><b>MOL:</b>&nbsp;&nbsp;&nbsp;<img id=molimage></img></span><b>CDK:</b>&nbsp;&nbsp;&nbsp;<img id=cdkimage></img></div>");
-	  }
+var getOCLAbstractDepictorMode = function() {
+	return oclDefaultMode | (getShowAtomNumbers() ? cDModeAtomNoPlusOne : 0);
+}
+
+var updateAtomNumbers = function(){
+	if (SwingJS.Inchi.oclDrawing)
+		swingjs.OCL.showAtomNumbers(SwingJS.Inchi.oclDrawing, getShowAtomNumbers());
+	if (SwingJS.Inchi.cdkMolecule)
+		  showStructureImage(SwingJS.Inchi.cdkMolecule);
+}
+
+function doShowModelJSON() {
+	var inchi = $("#txtinchi").val();
+	var json = swingjs.OCL.getInchiModelJSON(inchi);
+	alert(json);	
+}
+
+var getShowAtomNumbers = function(){
+	return $("#optatomnumbers:checked").val();
+}
+
+var showStructureImage = function(mol, isMolFile, fromMolfile, updateLabel) {
+	  var CDK = swingjs.CDK;
+	  SwingJS.Inchi.cdkMolecule = mol;
+	  var src = (mol.getAtomCount$() == 0 ? "" : CDK.getDataURIFromCDKMolecule(mol, getShowAtomNumbers()));
+	  var divImg;
 	  if (isMolFile) {
+		  if (updateLabel)
+			  $("#mollabel").html("MOL \u27A1 InChI \u27A1 MOL");
 		  divImg = $("#molimage")[0];
 		  $("#molimagediv").show();
 	  } else {
+		  if (updateLabel)
+			  $("#cdklabel").html((fromMolfile ? "MOL \u27A1 ":"")+"InChI \u27A1 CDK");
 		  divImg = $("#cdkimage")[0];
 		  $("#molimagediv").hide();
 	  }
-	  ketcherdiv.hide()
 	  displayImage(divImg, src);
 }
 
@@ -164,90 +278,98 @@ function displayImage(divImg,src) {
 		timeoutID = setTimeout(function() {
 			divImg.src = "";
 			timeoutID = 0;
-			$("#"+divimage + "div").show();	
+			$("#"+divImg.id + "div").show();	
 		},1000);
 	}
 }
 
 function updateInchiTextBox(what) {
-	updateTextArea(getData(what), true);
+	updateTextArea(getData(what), true, false);
 }
 
-var updateTextArea = function(text, updateTab3) {
+var updateTextArea = function(text, doUpdateInchi, fromOCL) {
 	setTimeout(function() {
-	 $('#inchi-tab3-inputTextarea').val(text);	
-	 if (updateTab3)
-		 updateInchiTab3();
+	 $('#txtinchi').val(text);	
+	 if (doUpdateInchi)
+		 updateInchi(fromOCL);
 	}, 50);
 }
 
-// create a new header just for this demo
-
-document.title = "JNA-InChI/CDK SwingJS demo";
-
 var addDnD = function() {
-	const textarea = document.getElementById('inchi-tab3-inputTextarea');
+	const textarea = $("#txtinchi")[0];
+	
+	textarea.addEventListener('input', (event) => {
+		updateInchi(false);
+	});
 
 	textarea.addEventListener('dragover', (event) => {
 	  event.preventDefault();
+	  event.dataTransfer.dropEffect = 'copy';
 	});
 
 	textarea.addEventListener('drop', (event) => {
 	  event.preventDefault();
 	  const file = event.dataTransfer.files[0];
 	  const reader = new FileReader();
-
 	  reader.onload = (e) => {
-	    textarea.value = e.target.result;
-	    updateInchiTab3();
+		  var val = e.target.result;
+		  setTimeout(function() {
+			  textarea.value = val;
+			  updateInchi(false);
+		  },10);
 	  };
-
 	  reader.readAsText(file);
 	});	
 }; addDnD();
+
+var onOCLChangedTimeoutID = 0;
+var itest = 0;
+
+
+var showOCL = function(inchiInput, fromMolfile) {
+  wasTextChange = true;
+  var mol = swingjs.OCL.getOCLMoleculeFromInchiInput(inchiInput);
+  swingjs.OCL.setMolecule(SwingJS.Inchi.oclDrawing, mol, getOCLAbstractDepictorMode());	
+  var title = (fromMolfile ? "MOL \u27A1 ":"")+"InChI \u27A1 OCL";
+  SwingJS.Inchi.OCLFrame.setTitle$S(title);
+}
+
+var onOCLChanged = function(drawing) {
+	if (drawing)
+		SwingJS.Inchi.oclDrawing = drawing;
+	else
+		drawing = SwingJS.Inchi.oclDrawing;
+	onOCLChangedTimeoutID && clearTimeout(onOCLChangedTimeoutID);
+	onOCLChangedTimeoutID = setTimeout(
+		function() {
+			if (!wasTextChange) {
+				SwingJS.Inchi.OCLFrame.setTitle$S("OCL \u27A1 InChI");
+				updateTextArea(swingjs.OCL.getInChIFromOCLMolecule(drawing.mMol, getInputOptions()), true, true);
+			}
+			wasTextChange = false;
+		}, 
+		50
+	);
+};
 
 function startOCL() {
 	Clazz.loadClass("swingjs.OCL");
 	swingjs.OCL.initInchi({
 		run$: function() {
-			swingjs.OCL.getFrame("testing", 400,400,-1, {
-				accept$O : function(drawing) {
-					alert(OCL.getInchiFromOCLMolecule(drawing.mMol));
-				}
-			});			
+			var frame = SwingJS.Inchi.OCLFrame = swingjs.OCL.getFrame("InChI \u27A1 OCL \u27A1 InChI", 400,400,-1, {
+				accept$O : function(drawing) {onOCLChanged(drawing)}
+			});
+			frame.setLocation$I$I(700,0);
+			SwingJS.Inchi.oclDrawing = swingjs.OCL.getGenericDrawArea(frame);
 		}
 	});
 }
-
-var newLook = function() {
-$("#inchi-tab3-inchiversion").parent().hide()
-$("#pills-rinchi-tab").hide()
-$("#pills-about-tab").hide()
-$("#pills-inchi-tab").hide()
-$("#inchi-tab2").hide()
-$("#inchi-tab1").hide()
-$("#inchi-tab3").click()
-$("#inchi-tab3").hide()
-$("#inchi-tab3-ketcher").hide()
-$("#inchi-tab3-inputTextarea")[0].placeholder = "Paste an InChI, AuxInfo, or MOL file here, or drop a MOL file into this box.";
-$("h1").parent().html(`
-<span>
-To try it out, enter an InChI such as that for <a href="javascript:updateInchiTextBox('morphine')">morphine</a>
-or <a href="javascript:updateInchiTextBox('(+)-morphine')">its enantiomer</a>
-or this <a href="javascript:updateInchiTextBox('taxol')">taxol MOL file (with amide fixing)</a>
-or this <a href="javascript:updateInchiTextBox('auxinfo')">AuxInfo</a>.
-Go ahead and reverse the sign of one or more of the stereochemical indicators such as "13-" to "13+". Fun, huh?
-</span>
-Many thanks to John Mayfield, Daniel Lowe, Jonathan Goodman, and others for assisting us in getting all these
-pieces working together. Questions? Got a Java program or library you'd like to see run in JavaScript? Talk to me. <a href=mailto:hansonr@stolaf.edu>Bob Hanson</a>.
-`);
-}; newLook();
 
 var VERSION, APP_DESCRIPTION;
 
 async function showVersion(module) {
 	if (!module)
-		module = await availableInchiVersions[getVersion("inchi-tab3-pane")].module;
+		module = await jna.module;
 	if (!VERSION) {
 		// temporary, until JNA-InChI adds this
 	  var ptr = module.ccall("IXA_INCHIBUILDER_GetInChIVersion", "number", ["number"], [true]);
@@ -258,12 +380,15 @@ async function showVersion(module) {
 	  module._free(ptr);		
 	} 
 	var msg = "<span style='color:red'>VERSION=" + VERSION + "&nbsp;&nbsp;&nbsp;&nbsp; APP_DESCRIPTION=" + APP_DESCRIPTION + "</span>";
-	$("#inchi-tab3-logs").html(msg);
+	$("#txtlog").html(msg);
 
 }
 
 var getData = function(what) {
 	switch (what) {
+	case 'fixtest':
+		// phenol-carboxylate and amide
+		return "InChI=1S/C10H9NO5/c12-7-3-1-6(2-4-7)10(16)11-8(13)5-9(14)15/h1-4,12H,5H2,(H,14,15)(H,11,13,16)/p-1";
 	case 'morphine':
 		return 'InChI=1S/C17H19NO3/c1-18-7-6-17-10-3-5-13(20)16(17)21-15-12(19)4-2-9(14(15)17)8-11(10)18/h2-5,10-11,13,16,19-20H,6-8H2,1H3/t10-,11+,13-,16-,17-/m0/s1';
 	case '(+)-morphine':
