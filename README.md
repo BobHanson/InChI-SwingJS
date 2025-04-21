@@ -1,6 +1,12 @@
 # InChI-SwingJS
 
-Our work in InChI-SwingJS is essentially complete. We have added a method to our fork of Inchi-Web, <b>model_from_inchi</b> that returns a JSON structure [[example](https://drive.google.com/file/d/1NfbK9kfmRsZ5Ektw9P_zWNUSX8Srptkz/view?usp=sharing)] giving all the atom, bond, and stereo0d information necessary to create full 2D and 3D structures from InChI. Enormous thanks to Frank Lange for his assistance and for leading the way with Inchi-Web. Check out our [super-simple demo](https://bobhanson.github.io/InChI-SwingJS/SimpleDemo/index1.html) to see how simple it is to add the InChI (1.07) library to a JavaScript page.
+As of April 20, 2025, a fully integrated CDK/OpenChemLib/JNA-InChI/InChI-WASM java2script/SwingJS JavaScript implementation with streamlined single-file JavaScript packaging and single-file assets packaging has been deployed. (see https://bobhanson.github.io/InChI-SwingJS/web-demo). Seet that page for more information about what we have done there and also for links to the various Java projects we forked and tweaked a bit to be JavaScript/SwingJS compatible.
+
+This implementation no longer uses any of the JavaScript from the forked INCHI-WEB-DEMO project. Huge gratitude nonetheless to Jonathon Goodman and coworkers for the roadmap they laid out for creating a WebAssembly module. We stil use a modified version of that makefile. 
+
+As of Feb 16, 2025, the status is that all steps are complete, including implementation in JavaScript of inchi 1.07.2, and upgrading of the Java code from InChI 1.03 to 1.07.2 (as well switching to JNA-InChI for Java). 
+
+Jan 31, 2025. Our work in InChI-SwingJS is essentially complete. We have added a method to our fork of Inchi-Web, <b>model_from_inchi</b> that returns a JSON structure [[example](https://drive.google.com/file/d/1NfbK9kfmRsZ5Ektw9P_zWNUSX8Srptkz/view?usp=sharing)] giving all the atom, bond, and stereo0d information necessary to create full 2D and 3D structures from InChI. Enormous thanks to Frank Lange for his assistance and for leading the way with Inchi-Web. Check out our [super-simple demo](https://bobhanson.github.io/InChI-SwingJS/SimpleDemo/index1.html) to see how simple it is to add the InChI (1.07) library to a JavaScript page.
 See [our chronicle Google Doc](https://docs.google.com/document/d/1-Q1PfzbVYcvl-gJL-ufEzx4_uGOmLzXr1IQiyscANbM/edit?usp=sharing) for a detailed description of how we adapted INCHI-WEB wasm for this project.
 
 We have also replaced JNI-InChI with JNA-InChI (with just one tweak there, in InchiFlags.java.) Enormous thanks to David Lowe and John Mayfield and friends for maintaining the JNA-InChI project. 
@@ -61,9 +67,4 @@ all done in OCL-SwingJS. Then OCL-SwingJS.jar is imported
 into JME-SwingJS, and JME-SwingJS is imported into Jmol-SwingJS. Jmol (on SourceForge) has its own JNA-InChI.jar import.)
  
 Our work allows any web application using OpenChemLib, Jmol, the JmolDataD library, or any other implementation of inchi-wasm or JNA-InChI to do the same. In Java or JavaScript.
-
-As of Feb 16, 2025, the status is that all steps are complete, including implementation in JavaScript of inchi 1.07.2, and upgrading of the Java code from InChI 1.03 to 1.07.2 (as well switching to JNA-InChI for Java). 
-
-As of April 20, 2025, a fully integrated CDK/OpenChemLib/JNA-InChI/InChI-WASM java2script/SwingJS JavaScript implementation with streamlined single-file JavaScript packaging and single-file assets packaging has been deployed. (see https://bobhanson.github.io/InChI-SwingJS/web-demo). 
-
 
