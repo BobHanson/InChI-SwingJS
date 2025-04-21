@@ -1,6 +1,7 @@
 <project name="Inchi-SwingJS" default="toJs" basedir=".">
  
     <property name="html.dir" value="site-html-assets" />   
+    <property name="dist.dir" value="dist" />
 
     <property name="site.dir" value="site" />
     <property name="swingjs.path" value="${site.dir}/swingjs" />
@@ -38,6 +39,10 @@
         <include name="**"/>
     </fileset>
     </copy>
+
+    <echo>creating ${dist.dir}/cdk-ocl-demo-site.zip</echo>
+    <zip destfile="${dist.dir}/cdk-ocl-demo-site.zip" basedir="docs/web-demo" ></zip>
+
 
   </target>
 
