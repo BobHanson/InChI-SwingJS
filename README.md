@@ -64,4 +64,6 @@ Our work allows any web application using OpenChemLib, Jmol, the JmolDataD libra
 
 As of Feb 16, 2025, the status is that all steps are complete, including implementation in JavaScript of inchi 1.07.2, and upgrading of the Java code from InChI 1.03 to 1.07.2 (as well switching to JNA-InChI for Java). 
 
+As of April 20, 2025, a fully integrated CDK/OpenChemLib/JNA-InChI/InChI-WASM java2script/SwingJS JavaScript implementation with streamlined single-file JavaScript packaging and single-file assets packaging has been deployed. (see https://bobhanson.github.io/InChI-SwingJS/web-demo). 
+
 
