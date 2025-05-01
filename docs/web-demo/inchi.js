@@ -45,10 +45,8 @@ var appletReady = function() {
 	$("#optfixedh").change(function(){setTimeout(function() {
 		onOCLChanged(null)}, 10)});
 	$("#optfixamide").change(function(){setTimeout(function() {
-		//updateInchi(false)
 		onOCLChanged(null)}, 10)});
 	$("#optfixacid").change(function(){setTimeout(function() {
-		//updateInchi(false)
 		onOCLChanged(null)}, 10)});
 	$("#optatomnumbers").change(function(){setTimeout(function() {
 		updateAtomNumbers(false)}, 10)});
@@ -69,7 +67,7 @@ var getField = function(key) {
 	return f.split(key)[1].split("&")[0];
 }
 
-async function updateInchi(fromOCLChange) {
+async function processText(fromOCLChange) {
   const input = $("#txtinchi").val();
   writeResult("");
   if (!input || input.startsWith("InChI=")) {
@@ -194,8 +192,8 @@ var processMoleculeHandle = function(hStatus, hMolecule, outputOptions, isMolfil
 	  // mol file, so we want to also generate an InChI and produce its CDK model
 	  // we do this first, because it hides the MOL file structure from the previous call
 	  var inchi = CDK.getInChIFromInchiInput(input, getInputOptions());
-	  updateTextArea(inchi, false, false);
-	  readInchi(inchi, outputOptions, true, true);
+	  updateTextArea(inchi, true, false);
+	  return;
   }
   var mol = CDK.getCDKMoleculeFromInchiInput(input);
   showStructureImage(mol, isMolfile, fromMolfile, true);
@@ -283,15 +281,15 @@ function displayImage(divImg,src) {
 	}
 }
 
-function updateInchiTextBox(what) {
+function processTextTextBox(what) {
 	updateTextArea(getData(what), true, false);
 }
 
-var updateTextArea = function(text, doUpdateInchi, fromOCL) {
+var updateTextArea = function(text, doProcessText, fromOCL) {
 	setTimeout(function() {
 	 $('#txtinchi').val(text);	
-	 if (doUpdateInchi)
-		 updateInchi(fromOCL);
+	 if (doProcessText)
+		 processText(fromOCL);
 	}, 50);
 }
 
@@ -299,7 +297,7 @@ var addDnD = function() {
 	const textarea = $("#txtinchi")[0];
 	
 	textarea.addEventListener('input', (event) => {
-		updateInchi(false);
+		processText(false);
 	});
 
 	textarea.addEventListener('dragover', (event) => {
@@ -315,7 +313,7 @@ var addDnD = function() {
 		  var val = e.target.result;
 		  setTimeout(function() {
 			  textarea.value = val;
-			  updateInchi(false);
+			  processText(false);
 		  },10);
 	  };
 	  reader.readAsText(file);
