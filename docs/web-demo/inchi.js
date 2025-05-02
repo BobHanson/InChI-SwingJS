@@ -234,7 +234,7 @@ var updateAtomNumbers = function(){
 
 function doShowModelJSON() {
 	var inchi = $("#txtinchi").val();
-	var json = swingjs.OCL.getInchiModelJSON(inchi);
+	var json = swingjs.OCL.getInchiModelJSONOpts(inchi, getOutputOptions());
 	alert(json);	
 }
 
