@@ -285,6 +285,10 @@ function doProcessTextBox(what) {
 	updateTextArea(getData(what), true, false);
 }
 
+function doToOCL() {
+  processText(false);	
+}
+
 var updateTextArea = function(text, doProcessText, fromOCL) {
 	setTimeout(function() {
 	 $('#txtinchi').val(text);	
