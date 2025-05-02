@@ -9,10 +9,10 @@
   <body>
     <div id=top style="width:700px">
 	    <span>
-			To try it out, enter an InChI such as that for <a href="javascript:updateInchiTextBox('morphine')">morphine</a>
-			or <a href="javascript:updateInchiTextBox('(+)-morphine')">its enantiomer</a>
-			or this <a href="javascript:updateInchiTextBox('taxol')">taxol MOL file (with amide fixing)</a>
-			or this <a href="javascript:updateInchiTextBox('auxinfo')">AuxInfo</a> or provide a <a href=javascript:getSMILES()>SMILES</a>.
+			To try it out, enter an InChI such as that for <a href="javascript:doProcessTextBox('morphine')">morphine</a>
+			or <a href="javascript:doProcessTextBox('(+)-morphine')">its enantiomer</a>
+			or this <a href="javascript:doProcessTextBox('taxol')">taxol MOL file (with amide fixing)</a>
+			or this <a href="javascript:doProcessTextBox('auxinfo')">AuxInfo</a> or provide a <a href=javascript:getSMILES()>SMILES</a>.
 			Go ahead and reverse the sign of one or more of the stereochemical indicators such as "13-" to "13+". Fun, huh?
 			And, of course, you can drop your own MOL, CDX, or CDXML file into the OCL editor, or just modify the structure that is there. 
 			It should immediately update both the InChI and the CDK images.
@@ -25,7 +25,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;input: <input id=optfixedh type=checkbox><label for=optfixedh>FixedH</label>
         &nbsp;&nbsp;&nbsp;&nbsp;output: <input id=optfixamide type=checkbox checked><label for=optfixamide>fixamide</label>
         <input id=optfixacid type=checkbox checked><label for=optfixacid>fixacid</label> 
-        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:updateInchiTextBox('fixtest')">test case</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:doProcessTextBox('fixtest')">test case</a>
     </div>
     <div id=inchi><textarea id=txtinchi style="width:600px;height:100px" placeholder="Paste an InChI, AuxInfo, or MOL file here, or drop a MOL file into this box. You can also drop a MOL, CDX, or CDXML file into the OCL app"></textarea>
     <br><input id=optatomnumbers type=checkbox><label for=optatomnumbers>atom numbers</label>

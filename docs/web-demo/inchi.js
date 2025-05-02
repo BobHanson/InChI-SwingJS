@@ -281,7 +281,7 @@ function displayImage(divImg,src) {
 	}
 }
 
-function processTextTextBox(what) {
+function doProcessTextBox(what) {
 	updateTextArea(getData(what), true, false);
 }
 
